@@ -1,0 +1,34 @@
+# Python-generated files
+__pycache__/
+*.py[oc]
+build/
+dist/
+wheels/
+*.egg-info
+
+# Virtual environments
+.venv
+
+# data
+*.nii.gz
+*.nii
+*.gz
+
+#weights
+*.pth
+*.pt
+*.pkl
+*.pickle
+*.ckpt
+
+#result
+result/*
+!result/.gitkeep
+
+#text
+*.txt
+*.log
+*.csv
+*.json
+*.yaml
+*.yml
