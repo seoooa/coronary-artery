@@ -1,3 +1,4 @@
+import autorootcwd
 import pandas as pd
 import os
 import shutil
@@ -51,8 +52,8 @@ def organize_data_by_split(csv_path, source_dir, target_base_dir, split_column):
     print(f"Testing cases: {len(test_cases)}")
 
 if __name__ == "__main__":
-    csv_path = "C:/SEOA/virtual/coronary-artery/data/imageCAS/imageCAS_data_split.csv"
-    source_dir = "C:/SEOA/virtual/coronary-artery/data/imageCAS"
-    target_base_dir = "D:/imageCAS_split"
+    csv_path = "data/imageCAS/imageCAS_data_split.csv"
+    source_dir = "data/imageCAS"
+    target_base_dir = "data/imageCAS_split"
 
     organize_data_by_split(csv_path, source_dir, target_base_dir, split_column='Split-1')
