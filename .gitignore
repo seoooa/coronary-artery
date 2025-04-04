@@ -30,6 +30,7 @@ result/*
 *.txt
 *.log
 *.csv
+!data/imageCAS/imageCAS_data_split.csv
 *.json
 *.yaml
 *.yml
