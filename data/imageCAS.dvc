@@ -1,0 +1,6 @@
+outs:
+- md5: 6198d74b8e5931188dc2fb0fa5b2f6b6.dir
+  size: 247034857935
+  nfiles: 3002
+  hash: md5
+  path: imageCAS
