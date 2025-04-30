@@ -7,9 +7,11 @@ from monai.transforms import (
     AsDiscrete,
     Resize,
 )
-from monai.networks.nets import AttentionUnet, SegResNet, UNETR, SwinUNETR, VNet
-from monai.networks.nets import UNet
-from monai.networks.layers import Norm
+
+from src.models.proposed.segresnet import SegResNet
+# from src.models.proposed.unetr import UNETR
+# from src.models.proposed.swin_unetr import SwinUNETRv2
+
 from lightning.pytorch.callbacks import (
     BatchSizeFinder,
     LearningRateFinder,
@@ -28,8 +30,9 @@ import nibabel as nib
 from pathlib import Path
 import csv
 from dvclive.lightning import DVCLiveLogger
-from src.data.dataloader import CoronaryArteryDataModule
-from src.models.networks import NetworkFactory
+
+from src.data.proposed_dataloader import CoronaryArteryDataModule
+from src.models.proposed_networks import NetworkFactory
 from src.losses.losses import LossFactory
 
 def print_monai_config():
@@ -38,7 +41,7 @@ def print_monai_config():
         print_config()
 
 class CoronaryArterySegmentModel(pytorch_lightning.LightningModule):
-    """Unguided model for comparison"""
+    """Proposed model"""
 
     def __init__(
         self,
@@ -67,7 +70,7 @@ class CoronaryArterySegmentModel(pytorch_lightning.LightningModule):
         # )
         self.hausdorff_metric = HausdorffDistanceMetric(
             include_background=False, 
-            percentile=85,     # 95 -> 85
+            percentile=85,
             directed=False,
             reduction="mean"
         )
@@ -81,16 +84,21 @@ class CoronaryArterySegmentModel(pytorch_lightning.LightningModule):
         self.result_folder = Path("result")  # Define the result folder
         self.test_step_outputs = []
 
-    def forward(self, x):
-        return self._model(x)
-
+    def forward(self, x, seg):
+        # Modify the forward method to include seg
+        return self._model(x, seg)
+    
     def configure_optimizers(self):
         optimizer = torch.optim.Adam(self._model.parameters(), self.lr)
         return optimizer
 
     def training_step(self, batch, batch_idx):
-        images, labels = batch["image"], batch["label"]
-        output = self.forward(images)
+        images, labels, segs = (
+            batch["image"],
+            batch["label"],
+            batch["seg"],
+        )  # Include seg
+        output = self.forward(images, segs)  # Pass seg to forward
         loss = self.loss_function(output, labels)
         metrics = loss.item()
         self.log(
@@ -104,20 +112,33 @@ class CoronaryArterySegmentModel(pytorch_lightning.LightningModule):
         return loss
 
     def validation_step(self, batch, batch_idx):
-        images, labels = batch["image"], batch["label"]
+        images, labels, segs = (
+            batch["image"],
+            batch["label"],
+            batch["seg"],
+        )  # Include seg
+
+        inputs = torch.cat((images, segs), dim=1)
+
         roi_size = self.patch_size
         sw_batch_size = 4
         outputs = sliding_window_inference(
-            images, roi_size, sw_batch_size, self.forward
+            inputs,
+            roi_size,
+            sw_batch_size,
+            lambda x: self.forward(
+                x[:, :1, ...], x[:, 1:, ...]
+            ),  # Split before forward
         )
+
         loss = self.loss_function(outputs, labels)
         outputs = [self.post_pred(i) for i in decollate_batch(outputs)]
         labels = [self.post_label(i) for i in decollate_batch(labels)]
-        
+
         self.dice_metric(y_pred=outputs, y=labels)
         # self.hausdorff_metric(y_pred=outputs, y=labels)
         self.mean_iou_metric(y_pred=outputs, y=labels)
-        
+
         # Hausdorff
         try:
             # 1. downsampling
@@ -149,7 +170,7 @@ class CoronaryArterySegmentModel(pytorch_lightning.LightningModule):
         for output in self.validation_step_outputs:
             val_loss += output["val_loss"].sum().item()
             num_items += output["val_number"]
-        
+
         mean_val_dice = self.dice_metric.aggregate().item()
         mean_val_hausdorff = self.hausdorff_metric.aggregate().item()
         mean_val_iou = self.mean_iou_metric.aggregate().item()
@@ -157,7 +178,7 @@ class CoronaryArterySegmentModel(pytorch_lightning.LightningModule):
         self.dice_metric.reset()
         self.hausdorff_metric.reset()
         self.mean_iou_metric.reset()
-            
+
         mean_val_loss = torch.tensor(val_loss / num_items, device=self.device)
         log_dict = {
             "val_dice": torch.tensor(mean_val_dice, device=self.device),
@@ -183,7 +204,6 @@ class CoronaryArterySegmentModel(pytorch_lightning.LightningModule):
 
     def save_result(self, inputs, outputs, labels, filename_prefix="result"):
         # Ensure outputs and labels are numpy arrays
-        # Create the test result folder if it doesn't exist
         save_folder = self.result_folder / "test"
         os.makedirs(save_folder, exist_ok=True)
 
@@ -222,17 +242,31 @@ class CoronaryArterySegmentModel(pytorch_lightning.LightningModule):
         print(f"Labels: {save_folder / f'{filename_prefix}_labels.nii.gz'}")
 
     def test_step(self, batch, batch_idx):
-        images, labels = batch["image"], batch["label"]
+        images, labels, segs = (
+            batch["image"],
+            batch["label"],
+            batch["seg"],
+        )  # Include seg
         roi_size = self.patch_size
         sw_batch_size = 4
+        # Concatenate images and segs along the channel dimension
+        inputs = torch.cat((images, segs), dim=1)
+
         outputs = sliding_window_inference(
-            images, roi_size, sw_batch_size, self.forward
+            inputs,
+            roi_size,
+            sw_batch_size,
+            lambda x: self.forward(
+                x[:, :1, ...], x[:, 1:, ...]
+            ),  # Split before forward
         )
+
         outputs = [self.post_pred(i) for i in decollate_batch(outputs)]
         labels = [self.post_label(i) for i in decollate_batch(labels)]
-        
+
         filename = batch["image"].meta["filename_or_obj"][0]
         patient_id = filename.split("/")[-2]  # Gets patient id (ex. 25) from the path
+
         # Save result
         self.save_result(
             images, outputs[0], labels[0], filename_prefix=f"Subj_{patient_id}"
@@ -273,7 +307,7 @@ class CoronaryArterySegmentModel(pytorch_lightning.LightningModule):
         dice_score = self.dice_metric.aggregate().item()
         # hausdorff_score = self.hausdorff_metric.aggregate().item()
         mean_iou_score = self.mean_iou_metric.aggregate().item()
-
+        
         d = {
             "test_dice": dice_score,
             "test_hausdorff": hausdorff_score,
@@ -318,7 +352,7 @@ class CoronaryArterySegmentModel(pytorch_lightning.LightningModule):
             for result in self.test_step_outputs:
                 # Create a new dict without the filename
                 result_with_filename = {
-                    "dice_score": result["test_dice"],  
+                    "dice_score": result["test_dice"],
                     "hausdorff_score": result["test_hausdorff"],
                     "iou_score": result["test_iou"],
                     "patient_id": result["patient_id"],
@@ -349,9 +383,7 @@ class CoronaryArterySegmentModel(pytorch_lightning.LightningModule):
 @click.command()
 @click.option(
     "--arch_name",
-    type=click.Choice(
-        ["UNet", "AttentionUnet", "SegResNet", "UNETR", "SwinUNETR", "VNet", "DynUNet"]
-    ),
+    type=click.Choice(["UNet", "SegResNet", "UNETR", "SwinUNETR"]),
     default="UNETR",
     help="Choose the architecture name for the model.",
 )
@@ -401,14 +433,14 @@ def main(
     print_monai_config()
 
     # set up loggers and checkpoints
-    log_dir = f"result/{arch_name}"
+    log_dir = f"result/proposed_{arch_name}"
     os.makedirs(log_dir, exist_ok=True)
 
     # GPU Setting
     if "," in str(gpu_number):
         # Multiple GPUs
         devices = [int(gpu) for gpu in str(gpu_number).split(",")]
-        strategy = "ddp"
+        strategy = "ddp_find_unused_parameters_true"
     else:
         # Single GPU
         devices = [int(gpu_number)]
@@ -440,11 +472,11 @@ def main(
 
     # Initialize data module
     data_module = CoronaryArteryDataModule(
-        data_dir="data/imageCAS",
+        data_dir="data/imageCAS_heart",
         batch_size=1,
         patch_size=(96, 96, 96),
         num_workers=4,
-        cache_rate=0.1
+        cache_rate=0
     )
     data_module.prepare_data()
 
