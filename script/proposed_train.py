@@ -8,10 +8,6 @@ from monai.transforms import (
     Resize,
 )
 
-from src.models.proposed.segresnet import SegResNet
-# from src.models.proposed.unetr import UNETR
-# from src.models.proposed.swin_unetr import SwinUNETRv2
-
 from lightning.pytorch.callbacks import (
     BatchSizeFinder,
     LearningRateFinder,
@@ -108,7 +104,7 @@ class CoronaryArterySegmentModel(pytorch_lightning.LightningModule):
             on_epoch=True,
             prog_bar=True,
             logger=True,
-        )
+        )   
         return loss
 
     def validation_step(self, batch, batch_idx):
@@ -414,6 +410,12 @@ class CoronaryArterySegmentModel(pytorch_lightning.LightningModule):
     default=None,
     help="Path to a checkpoint file to load for inference.",
 )
+@click.option(
+    "--guide",
+    type=click.Choice(["segMap", "distanceMap"]),
+    default="segMap",
+    help="Choose the guide for training.",
+)
 def main(
     arch_name,
     loss_fn,
@@ -421,19 +423,20 @@ def main(
     check_val_every_n_epoch,
     gpu_number,
     checkpoint_path,
+    guide,
 ):
-    # NCCL 통신 설정
+    # NCCL communication
     os.environ["NCCL_IB_DISABLE"] = "1"
     os.environ["NCCL_P2P_DISABLE"] = "1"
     
-    # multiprocessing 설정
+    # multiprocessing
     torch.multiprocessing.set_start_method("spawn", force=True)
     torch.set_float32_matmul_precision('medium')
     
     print_monai_config()
 
     # set up loggers and checkpoints
-    log_dir = f"result/proposed_{arch_name}"
+    log_dir = f"result/proposed_{arch_name}" + ("_distanceMap" if guide == "distanceMap" else "")
     os.makedirs(log_dir, exist_ok=True)
 
     # GPU Setting
@@ -476,7 +479,8 @@ def main(
         batch_size=1,
         patch_size=(96, 96, 96),
         num_workers=4,
-        cache_rate=0
+        cache_rate=0,
+        use_distance_map=guide == "distanceMap",
     )
     data_module.prepare_data()
 

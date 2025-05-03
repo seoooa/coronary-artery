@@ -12,11 +12,52 @@ from monai.transforms import (
     Spacingd,
     AsDiscreted,
     GaussianSmoothd,
+    Lambda,
 )
 from monai.data import CacheDataset, DataLoader, Dataset
 import os
+import SimpleITK as sitk
+import torch
 import lightning.pytorch as pl
 from pathlib import Path
+from scipy.ndimage import distance_transform_edt
+import numpy as np
+
+def create_distance_map(binary_mask):
+    """
+    create distance map from binary mask
+    
+    Args:
+        binary_mask (torch.Tensor): [C, H, W, D] binary mask
+        
+    Returns:
+        torch.Tensor: [C, H, W, D] distance map
+    """
+    distance_maps = []
+    
+    for c in range(binary_mask.shape[0]):  # each channel
+        channel_mask = binary_mask[c].numpy()  # [H, W, D]
+        
+        # 외부 거리는 양수, 내부 거리는 음수로 계산
+        outside_dist = distance_transform_edt(~channel_mask)
+        inside_dist = -distance_transform_edt(channel_mask)
+        
+        # 결합된 distance map
+        distance_map = outside_dist + inside_dist
+        distance_maps.append(torch.from_numpy(distance_map.astype(np.float32)))
+    
+    return torch.stack(distance_maps)
+
+def ConvertDistanceMap(data):
+    """
+    convert segmentation to distance map
+    """
+    seg = data["seg"]  # [C, H, W, D] one-hot encoded segmentation
+    
+    distance_map = create_distance_map(seg)
+    
+    data["seg"] = distance_map
+    return data
 
 class CoronaryArteryDataModule(pl.LightningDataModule):
     def __init__(
@@ -25,7 +66,8 @@ class CoronaryArteryDataModule(pl.LightningDataModule):
         batch_size: int = 4,
         patch_size: tuple = (96, 96, 96),
         num_workers: int = 4, 
-        cache_rate: float = 0.05
+        cache_rate: float = 0.05,
+        use_distance_map: bool = False
     ):
         super().__init__()
         self.data_dir = Path(data_dir)
@@ -33,6 +75,7 @@ class CoronaryArteryDataModule(pl.LightningDataModule):
         self.patch_size = patch_size
         self.num_workers = num_workers
         self.cache_rate = cache_rate
+        self.use_distance_map = use_distance_map
         self.train_ds = None
         self.val_ds = None
         self.test_ds = None
@@ -59,80 +102,86 @@ class CoronaryArteryDataModule(pl.LightningDataModule):
         return data_files
 
     def prepare_data(self):
-        self.train_transforms = Compose(
-            [
-                LoadImaged(keys=["image", "label", "seg"]),
-                EnsureChannelFirstd(keys=["image", "label", "seg"]),
-                Orientationd(keys=["image", "label", "seg"], axcodes="RAS"),
-                # Spacingd(
-                #    keys=["image", "label"],
-                #    pixdim=(0.35, 0.35, 0.5),
-                #    mode=("bilinear", "nearest"),
-                # ),
-                ScaleIntensityRanged(
-                    keys=["image"],
-                    a_min=-150,
-                    a_max=550,
-                    b_min=0.0,
-                    b_max=1.0,
-                    clip=True,
-                ),
-                AsDiscreted(
-                    keys=["seg"],
-                    to_onehot=8,
-                ),
-                CropForegroundd(keys=["image", "label", "seg"], source_key="image"),
-                RandCropByPosNegLabeld(
-                    keys=["image", "label", "seg"],
-                    label_key="label",
-                    spatial_size=(96, 96, 96),
-                    pos=1,
-                    neg=1,
-                    num_samples=4,
-                    image_key="image",
-                    image_threshold=0,
-                ),
-                RandFlipd(
-                    keys=["image", "label", "seg"],
-                    spatial_axis=[0],
-                    prob=0.10,
-                ),
-                RandFlipd(
-                    keys=["image", "label", "seg"],
-                    spatial_axis=[1],
-                    prob=0.10,
-                ),
-                GaussianSmoothd(keys=["seg"], sigma=1.0),
-                RandShiftIntensityd(keys="image", offsets=0.05, prob=0.5),
-            ]
-        )
+        transforms = [
+            LoadImaged(keys=["image", "label", "seg"]),
+            EnsureChannelFirstd(keys=["image", "label", "seg"]),
+            Orientationd(keys=["image", "label", "seg"], axcodes="RAS"),
+            ScaleIntensityRanged(
+                keys=["image"],
+                a_min=-150,
+                a_max=550,
+                b_min=0.0,
+                b_max=1.0,
+                clip=True,
+            ),
+            AsDiscreted(
+                keys=["seg"],
+                to_onehot=8,
+            ),
+            CropForegroundd(keys=["image", "label", "seg"], source_key="image"),
+        ]
 
-        self.val_transforms = Compose(
-            [
-                LoadImaged(keys=["image", "label", "seg"]),
-                EnsureChannelFirstd(keys=["image", "label", "seg"]),
-                Orientationd(keys=["image", "label", "seg"], axcodes="RAS"),
-                # Spacingd(
-                #    keys=["image", "label"],
-                #    pixdim=(0.35, 0.35, 0.5),
-                #    mode=("bilinear", "nearest"),
-                # ),
-                ScaleIntensityRanged(
-                    keys=["image"],
-                    a_min=-150,
-                    a_max=550,
-                    b_min=0.0,
-                    b_max=1.0,
-                    clip=True,
-                ),
-                AsDiscreted(
-                    keys=["seg"],
-                    to_onehot=8,
-                ),
-                CropForegroundd(keys=["image", "label", "seg"], source_key="image"),
-                GaussianSmoothd(keys=["seg"], sigma=1.0),
-            ]
-        )
+        # distance map 
+        if self.use_distance_map:
+            transforms.append(Lambda(ConvertDistanceMap))
+
+        transforms.extend([
+            RandCropByPosNegLabeld(
+                keys=["image", "label", "seg"],
+                label_key="label",
+                spatial_size=(96, 96, 96),
+                pos=1,
+                neg=1,
+                num_samples=4,
+                image_key="image",
+                image_threshold=0,
+            ),
+            RandFlipd(
+                keys=["image", "label", "seg"],
+                spatial_axis=[0],
+                prob=0.10,
+            ),
+            RandFlipd(
+                keys=["image", "label", "seg"],
+                spatial_axis=[1],
+                prob=0.10,
+            ),
+        ])
+
+        if not self.use_distance_map:
+            transforms.append(GaussianSmoothd(keys=["seg"], sigma=1.0))
+
+        transforms.append(RandShiftIntensityd(keys="image", offsets=0.05, prob=0.5))
+
+        self.train_transforms = Compose(transforms)
+
+        val_transforms = [
+            LoadImaged(keys=["image", "label", "seg"]),
+            EnsureChannelFirstd(keys=["image", "label", "seg"]),
+            Orientationd(keys=["image", "label", "seg"], axcodes="RAS"),
+            ScaleIntensityRanged(
+                keys=["image"],
+                a_min=-150,
+                a_max=550,
+                b_min=0.0,
+                b_max=1.0,
+                clip=True,
+            ),
+            AsDiscreted(
+                keys=["seg"],
+                to_onehot=8,
+            ),
+            CropForegroundd(keys=["image", "label", "seg"], source_key="image"),
+        ]
+
+        # distance map
+        if self.use_distance_map:
+            val_transforms.append(Lambda(ConvertDistanceMap))
+
+        if not self.use_distance_map:
+            val_transforms.append(GaussianSmoothd(keys=["seg"], sigma=1.0))
+
+        self.val_transforms = Compose(val_transforms)
 
     def setup(self, stage=None):
         train_files = self.load_data_splits("train")
@@ -142,6 +191,12 @@ class CoronaryArteryDataModule(pl.LightningDataModule):
         print(f"Found {len(train_files)} training cases")
         print(f"Found {len(val_files)} validation cases")
         print(f"Found {len(test_files)} test cases")
+
+        # debug transforms
+        if self.use_distance_map:
+            print("DISTANCE MAP Guided Training")
+        else:
+            print("SEGMENTATION MAP Guided Training")
 
         self.train_ds = CacheDataset(
             data=train_files,

@@ -1,0 +1,56 @@
+stages:
+  train:
+    cmd: python script/train.py --arch_name ${arch_name} --loss_fn ${loss_fn}
+    deps:
+    - script/train.py
+    - src/models/networks.py
+    - src/losses/losses.py
+    - data/imageCAS
+    params:
+    - arch_name
+    - loss_fn
+    - max_epochs
+    - batch_size
+    - learning_rate
+    metrics:
+    - result/metrics.json
+    plots:
+    - result/plots/metrics:
+        x: epoch
+        y: val_dice
+metrics:
+- result/coronary_UNet/metrics.json
+- result/UNETR/metrics.json
+- result/DynUNet/metrics.json
+- result/VNet/metrics.json
+- result/SwinUNETR/metrics.json
+- result_fast/UNet/metrics.json
+- result_persistent/proposed_SegResNet/metrics.json
+- result/UNet/metrics.json
+- result/SegResNet/metrics.json
+- result/proposed_SegResNet/metrics.json
+plots:
+- result/coronary_UNet/plots/metrics:
+    x: step
+- result/UNETR/plots/metrics:
+    x: step
+- result/DynUNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/SwinUNETR/plots/metrics:
+    x: step
+- result_fast/UNet/plots/metrics:
+    x: step
+- result_persistent/proposed_SegResNet/plots/metrics:
+    x: step
+- result/UNet/plots/metrics:
+    x: step
+- result/SegResNet/plots/metrics:
+    x: step
+- result/proposed_SegResNet/plots/metrics:
+    x: step
+artifacts:
+  best:
+    path: result/proposed_SegResNet/artifacts/epoch=199-step=5600.ckpt
+    type: model

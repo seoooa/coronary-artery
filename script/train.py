@@ -390,11 +390,11 @@ def main(
     gpu_number,
     checkpoint_path,
 ):
-    # NCCL 통신 설정
+    # NCCL communication
     os.environ["NCCL_IB_DISABLE"] = "1"
     os.environ["NCCL_P2P_DISABLE"] = "1"
     
-    # multiprocessing 설정
+    # multiprocessing
     torch.multiprocessing.set_start_method("spawn", force=True)
     torch.set_float32_matmul_precision('medium')
     
