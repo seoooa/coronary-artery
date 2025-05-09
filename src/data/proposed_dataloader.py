@@ -20,8 +20,6 @@ import SimpleITK as sitk
 import torch
 import lightning.pytorch as pl
 from pathlib import Path
-from scipy.ndimage import distance_transform_edt
-import numpy as np
 
 def create_distance_map(binary_mask):
     """
@@ -38,13 +36,21 @@ def create_distance_map(binary_mask):
     for c in range(binary_mask.shape[0]):  # each channel
         channel_mask = binary_mask[c].numpy()  # [H, W, D]
         
-        # 외부 거리는 양수, 내부 거리는 음수로 계산
-        outside_dist = distance_transform_edt(~channel_mask)
-        inside_dist = -distance_transform_edt(channel_mask)
+        # convert to SimpleITK image
+        sitk_mask = sitk.GetImageFromArray(channel_mask)
+        sitk_mask = sitk.Cast(sitk_mask, sitk.sitkUInt8)
         
-        # 결합된 distance map
-        distance_map = outside_dist + inside_dist
-        distance_maps.append(torch.from_numpy(distance_map.astype(np.float32)))
+        # create distance map
+        distance_map = sitk.SignedMaurerDistanceMap(
+            sitk_mask,
+            insideIsPositive=False,  # heart outside is positive
+            squaredDistance=False,
+            useImageSpacing=True     # physical distance (mm)
+        )
+        
+        # convert to tensor
+        distance_map_array = sitk.GetArrayFromImage(distance_map)
+        distance_maps.append(torch.from_numpy(distance_map_array))
     
     return torch.stack(distance_maps)
 

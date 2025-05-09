@@ -19,7 +19,7 @@ from pathlib import Path
 class CoronaryArteryDataModule(pl.LightningDataModule):
     def __init__(
         self,
-        data_dir: str = "data/imageCAS",
+        data_dir: str = "data/imageCAS_heart",
         batch_size: int = 4,
         patch_size: tuple = (96, 96, 96),
         num_workers: int = 4,

@@ -27,8 +27,8 @@ metrics:
 - result_fast/UNet/metrics.json
 - result_persistent/proposed_SegResNet/metrics.json
 - result/UNet/metrics.json
-- result/SegResNet/metrics.json
 - result/proposed_SegResNet/metrics.json
+- result/SegResNet/metrics.json
 plots:
 - result/coronary_UNet/plots/metrics:
     x: step
@@ -46,11 +46,11 @@ plots:
     x: step
 - result/UNet/plots/metrics:
     x: step
-- result/SegResNet/plots/metrics:
-    x: step
 - result/proposed_SegResNet/plots/metrics:
+    x: step
+- result/SegResNet/plots/metrics:
     x: step
 artifacts:
   best:
-    path: result/proposed_SegResNet/artifacts/epoch=199-step=5600.ckpt
+    path: result/SegResNet/artifacts/epoch=2-step=84.ckpt
     type: model
