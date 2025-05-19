@@ -28,6 +28,7 @@ result/*
 
 #text
 *.txt
+!requirements.txt
 *.log
 *.csv
 !data/imageCAS/imageCAS_data_split.csv

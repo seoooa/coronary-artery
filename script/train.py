@@ -16,7 +16,6 @@ from lightning.pytorch.callbacks import (
     StochasticWeightAveraging,
 )
 
-from monai.metrics import DiceMetric, HausdorffDistanceMetric, MeanIoU
 from monai.inferers import sliding_window_inference
 from monai.data import decollate_batch
 from monai.config import print_config
@@ -31,6 +30,7 @@ from dvclive.lightning import DVCLiveLogger
 from src.data.dataloader import CoronaryArteryDataModule
 from src.models.networks import NetworkFactory
 from src.losses.losses import LossFactory
+from src.metrics.metrics import MetricFactory
 
 def print_monai_config():
     local_rank = int(os.environ.get("LOCAL_RANK", "0"))
@@ -52,6 +52,7 @@ class CoronaryArterySegmentModel(pytorch_lightning.LightningModule):
 
         self._model = NetworkFactory.create_network(arch_name, patch_size)
         self.loss_function = LossFactory.create_loss(loss_fn)
+        self.metrics = MetricFactory.create_metrics()
 
         self.post_pred = Compose(
             [EnsureType("tensor", device="cpu"), AsDiscrete(argmax=True, to_onehot=2)]
@@ -59,19 +60,7 @@ class CoronaryArterySegmentModel(pytorch_lightning.LightningModule):
         self.post_label = Compose(
             [EnsureType("tensor", device="cpu"), AsDiscrete(to_onehot=2)]
         )
-        self.dice_metric = DiceMetric(
-            include_background=False, reduction="mean", get_not_nans=False
-        )
-        # self.hausdorff_metric = HausdorffDistanceMetric(
-        #     include_background=False, percentile=95, reduction="mean"
-        # )
-        self.hausdorff_metric = HausdorffDistanceMetric(
-            include_background=False, 
-            percentile=85,     # 95 -> 85
-            directed=False,
-            reduction="mean"
-        )
-        self.mean_iou_metric = MeanIoU(include_background=False, reduction="mean")
+        
         self.best_val_dice = 0
         self.best_val_epoch = 0
         self.validation_step_outputs = []
@@ -114,31 +103,7 @@ class CoronaryArterySegmentModel(pytorch_lightning.LightningModule):
         outputs = [self.post_pred(i) for i in decollate_batch(outputs)]
         labels = [self.post_label(i) for i in decollate_batch(labels)]
         
-        self.dice_metric(y_pred=outputs, y=labels)
-        # self.hausdorff_metric(y_pred=outputs, y=labels)
-        self.mean_iou_metric(y_pred=outputs, y=labels)
-        
-        # Hausdorff
-        try:
-            # 1. downsampling
-            # original size is 96x96x96
-            # resize to 60x60x60
-            resize_transform = Resize(
-                spatial_size=[60, 60, 60],
-                mode="nearest"
-            )
-            
-            downsampled_outputs = [resize_transform(i) for i in outputs]
-            downsampled_labels = [resize_transform(i) for i in labels]
-            
-            # 2. each processing
-            for idx in range(len(downsampled_outputs)):
-                self.hausdorff_metric(
-                    y_pred=downsampled_outputs[idx].unsqueeze(0),
-                    y=downsampled_labels[idx].unsqueeze(0)
-                )
-        except Exception as e:
-            print(f"[ERROR] Hausdorff metric calculation error in validation step: {e}")
+        MetricFactory.calculate_metrics(self.metrics, outputs, labels)
         
         d = {"val_loss": loss, "val_number": len(outputs)}
         self.validation_step_outputs.append(d)
@@ -150,32 +115,37 @@ class CoronaryArterySegmentModel(pytorch_lightning.LightningModule):
             val_loss += output["val_loss"].sum().item()
             num_items += output["val_number"]
         
-        mean_val_dice = self.dice_metric.aggregate().item()
-        mean_val_hausdorff = self.hausdorff_metric.aggregate().item()
-        mean_val_iou = self.mean_iou_metric.aggregate().item()
-
-        self.dice_metric.reset()
-        self.hausdorff_metric.reset()
-        self.mean_iou_metric.reset()
+        metric_results = MetricFactory.aggregate_metrics(self.metrics)
+        MetricFactory.reset_metrics(self.metrics)
             
         mean_val_loss = torch.tensor(val_loss / num_items, device=self.device)
         log_dict = {
-            "val_dice": torch.tensor(mean_val_dice, device=self.device),
-            "val_hausdorff": torch.tensor(mean_val_hausdorff, device=self.device),
-            "val_iou": torch.tensor(mean_val_iou, device=self.device),
+            "val_dice": torch.tensor(metric_results["dice"], device=self.device),
+            "val_hausdorff": torch.tensor(metric_results["hausdorff"], device=self.device),
+            "val_iou": torch.tensor(metric_results["iou"], device=self.device),
+            "val_precision": torch.tensor(metric_results["precision"], device=self.device),
+            "val_recall": torch.tensor(metric_results["recall"], device=self.device),
+            "val_cldice": torch.tensor(metric_results["cldice"], device=self.device),
+            "val_betti_0": torch.tensor(metric_results["betti_0"], device=self.device),
+            "val_betti_1": torch.tensor(metric_results["betti_1"], device=self.device),
             "val_loss": mean_val_loss,
         }
 
         self.log_dict(log_dict, sync_dist=True)
 
-        if mean_val_dice > self.best_val_dice:
-            self.best_val_dice = mean_val_dice
+        if metric_results["dice"] > self.best_val_dice:
+            self.best_val_dice = metric_results["dice"]
             self.best_val_epoch = self.current_epoch
         print(
             f"current epoch: {self.current_epoch} "
-            f"current mean dice: {mean_val_dice:.4f}, "
-            f"hausdorff: {mean_val_hausdorff:.4f}, "
-            f"iou: {mean_val_iou:.4f}"
+            f"current mean dice: {metric_results['dice']:.4f}, "
+            f"hausdorff: {metric_results['hausdorff']:.4f}, "
+            f"iou: {metric_results['iou']:.4f}, "
+            f"precision: {metric_results['precision']:.4f}, "
+            f"recall: {metric_results['recall']:.4f}, "
+            f"cldice: {metric_results['cldice']:.4f}, "
+            f"betti_0: {metric_results['betti_0']:.4f}, "
+            f"betti_1: {metric_results['betti_1']:.4f}"
             f"\nbest mean dice: {self.best_val_dice:.4f} "
             f"at epoch: {self.best_val_epoch}"
         )
@@ -183,17 +153,12 @@ class CoronaryArterySegmentModel(pytorch_lightning.LightningModule):
 
     def save_result(self, inputs, outputs, labels, filename_prefix="result"):
         # Ensure outputs and labels are numpy arrays
-        # Create the test result folder if it doesn't exist
         save_folder = self.result_folder / "test"
         os.makedirs(save_folder, exist_ok=True)
 
         inputs_np = inputs.detach().cpu().numpy().squeeze()
         outputs_np = outputs.detach().cpu().numpy().squeeze()[1]
         labels_np = labels.detach().cpu().numpy().squeeze()[1]
-
-        # inputs_np = np.moveaxis(inputs_np, 0, -1)
-        # outputs_np = np.moveaxis(outputs_np, 0, -1)
-        # labels_np = np.moveaxis(labels_np, 0, -1)
 
         # Save inputs as NIfTI
         inputs_nifti = nib.Nifti1Image(
@@ -233,59 +198,30 @@ class CoronaryArterySegmentModel(pytorch_lightning.LightningModule):
         
         filename = batch["image"].meta["filename_or_obj"][0]
         patient_id = filename.split("/")[-2]  # Gets patient id (ex. 25) from the path
+        
         # Save result
         self.save_result(
             images, outputs[0], labels[0], filename_prefix=f"Subj_{patient_id}"
         )
 
-        self.dice_metric(y_pred=outputs, y=labels)
-        # self.hausdorff_metric(y_pred=outputs, y=labels)
-        self.mean_iou_metric(y_pred=outputs, y=labels)
-
-        # Hausdorff
-        try:
-            # 1. downsampling
-            # original size is 96x96x96
-            # resize to 60x60x60
-            resize_transform = Resize(
-                spatial_size=[60, 60, 60],
-                mode="nearest"
-            )
-            
-            downsampled_outputs = [resize_transform(i) for i in outputs]
-            downsampled_labels = [resize_transform(i) for i in labels]
-            
-            # 2. each processing
-            for idx in range(len(downsampled_outputs)):
-                self.hausdorff_metric(
-                    y_pred=downsampled_outputs[idx].unsqueeze(0),
-                    y=downsampled_labels[idx].unsqueeze(0)
-                )
-            
-            hausdorff_score = self.hausdorff_metric.aggregate().item()
-            self.hausdorff_metric.reset()
-
-        except Exception as e:
-            print(f"[ERROR] Hausdorff metric calculation error in test step: {e}")
-            hausdorff_score = 0
+        MetricFactory.calculate_metrics(self.metrics, outputs, labels)
         
-        # Calculate metrics for this batch
-        dice_score = self.dice_metric.aggregate().item()
-        # hausdorff_score = self.hausdorff_metric.aggregate().item()
-        mean_iou_score = self.mean_iou_metric.aggregate().item()
-
+        metric_results = MetricFactory.aggregate_metrics(self.metrics)
+        
         d = {
-            "test_dice": dice_score,
-            "test_hausdorff": hausdorff_score,
-            "test_iou": mean_iou_score,
+            "test_dice": metric_results["dice"],
+            "test_hausdorff": metric_results["hausdorff"],
+            "test_iou": metric_results["iou"],
+            "test_precision": metric_results["precision"],
+            "test_recall": metric_results["recall"],
+            "test_cldice": metric_results["cldice"],
+            "test_betti_0": metric_results["betti_0"],
+            "test_betti_1": metric_results["betti_1"],
             "patient_id": patient_id,
         }
         self.test_step_outputs.append(d)
 
-        # Reset metrics for next example
-        self.dice_metric.reset()
-        # self.hausdorff_metric.reset()
-        self.mean_iou_metric.reset()
+        MetricFactory.reset_metrics(self.metrics)
 
         return d
 
@@ -294,52 +230,81 @@ class CoronaryArterySegmentModel(pytorch_lightning.LightningModule):
         dice_scores = [x["test_dice"] for x in self.test_step_outputs]
         hausdorff_scores = [x["test_hausdorff"] for x in self.test_step_outputs]
         iou_scores = [x["test_iou"] for x in self.test_step_outputs]
+        precision_scores = [x["test_precision"] for x in self.test_step_outputs]
+        recall_scores = [x["test_recall"] for x in self.test_step_outputs]
+        cldice_scores = [x["test_cldice"] for x in self.test_step_outputs]
+        betti_0_scores = [x["test_betti_0"] for x in self.test_step_outputs]
+        betti_1_scores = [x["test_betti_1"] for x in self.test_step_outputs]
 
+        # Calculate means
         mean_dice = np.mean(dice_scores)
         mean_hausdorff = np.mean(hausdorff_scores)
         mean_iou = np.mean(iou_scores)
+        mean_precision = np.mean(precision_scores)
+        mean_recall = np.mean(recall_scores)
+        mean_cldice = np.mean(cldice_scores)
+        mean_betti_0 = np.mean(betti_0_scores)
+        mean_betti_1 = np.mean(betti_1_scores)
 
         # Log mean metrics
-        self.log_dict(
-            {
-                "test/mean_dice": mean_dice,
-                "test/mean_hausdorff": mean_hausdorff,
-                "test/mean_iou": mean_iou,
-            }
-        )
+        self.log_dict({
+            "test/mean_dice": mean_dice,
+            "test/mean_hausdorff": mean_hausdorff,
+            "test/mean_iou": mean_iou,
+            "test/mean_precision": mean_precision,
+            "test/mean_recall": mean_recall,
+            "test/mean_cldice": mean_cldice,
+            "test/mean_betti_0": mean_betti_0,
+            "test/mean_betti_1": mean_betti_1,
+        })
 
         # Save detailed result to CSV
         result_file = self.result_folder / "test" / "test_result.csv"
         with open(result_file, "w", newline="") as csvfile:
-            fieldnames = ["dice_score", "hausdorff_score", "iou_score", "patient_id"]
+            fieldnames = [
+                "dice_score", "hausdorff_score", "iou_score", 
+                "precision_score", "recall_score", "cldice_score",
+                "betti_0_score", "betti_1_score", "patient_id"
+            ]
             writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
 
             writer.writeheader()
             for result in self.test_step_outputs:
-                # Create a new dict without the filename
                 result_with_filename = {
-                    "dice_score": result["test_dice"],  
+                    "dice_score": result["test_dice"],
                     "hausdorff_score": result["test_hausdorff"],
                     "iou_score": result["test_iou"],
+                    "precision_score": result["test_precision"],
+                    "recall_score": result["test_recall"],
+                    "cldice_score": result["test_cldice"],
+                    "betti_0_score": result["test_betti_0"],
+                    "betti_1_score": result["test_betti_1"],
                     "patient_id": result["patient_id"],
                 }
                 writer.writerow(result_with_filename)
-        # Write summary row at the end of test result
-        with open(result_file, "a", newline="") as csvfile:
-            writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
-            writer.writerow(
-                {
-                    "dice_score": f"{mean_dice:.4f} ± {np.std(dice_scores):.4f}",
-                    "hausdorff_score": f"{mean_hausdorff:.4f} ± {np.std(hausdorff_scores):.4f}",
-                    "iou_score": f"{mean_iou:.4f} ± {np.std(iou_scores):.4f}",
-                    "patient_id": f"AVG ± STD",
-                }
-            )
+
+            # Write summary row
+            writer.writerow({
+                "dice_score": f"{mean_dice:.4f} ± {np.std(dice_scores):.4f}",
+                "hausdorff_score": f"{mean_hausdorff:.4f} ± {np.std(hausdorff_scores):.4f}",
+                "iou_score": f"{mean_iou:.4f} ± {np.std(iou_scores):.4f}",
+                "precision_score": f"{mean_precision:.4f} ± {np.std(precision_scores):.4f}",
+                "recall_score": f"{mean_recall:.4f} ± {np.std(recall_scores):.4f}",
+                "cldice_score": f"{mean_cldice:.4f} ± {np.std(cldice_scores):.4f}",
+                "betti_0_score": f"{mean_betti_0:.4f} ± {np.std(betti_0_scores):.4f}",
+                "betti_1_score": f"{mean_betti_1:.4f} ± {np.std(betti_1_scores):.4f}",
+                "patient_id": "AVG ± STD",
+            })
 
         print(f"\nTest Result Summary:")
         print(f"Mean Dice Score: {mean_dice:.4f}")
         print(f"Mean Hausdorff Distance: {mean_hausdorff:.4f}")
         print(f"Mean IoU Score: {mean_iou:.4f}")
+        print(f"Mean Precision Score: {mean_precision:.4f}")
+        print(f"Mean Recall Score: {mean_recall:.4f}")
+        print(f"Mean CLDice Score: {mean_cldice:.4f}")
+        print(f"Mean Betti-0 Error: {mean_betti_0:.4f}")
+        print(f"Mean Betti-1 Error: {mean_betti_1:.4f}")
         print(f"Detailed result saved to: {result_file}")
 
         # Clear the outputs
