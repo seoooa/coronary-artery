@@ -11,6 +11,8 @@ wheels/
 uv.lock
 
 # data
+data/*
+!data/.gitkeep
 *.nii.gz
 *.nii
 *.gz
@@ -36,4 +38,4 @@ result/*
 !data/imageCAS/imageCAS_data_split.csv
 *.json
 *.yaml
-*.yml
+*.yml.dvc/tmp/
