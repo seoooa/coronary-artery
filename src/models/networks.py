@@ -53,7 +53,7 @@ class NetworkFactory:
                 feature_size=48,
                 use_checkpoint=True,
             )
-            weight = torch.load("weights/model_swinvit.pt", weights_only=True)
+            weight = torch.load("weight/model_swinvit.pt", weights_only=True)
             model.load_from(weight)
             print("Using pretrained self-supervised Swin UNETR backbone weights!")
             return model

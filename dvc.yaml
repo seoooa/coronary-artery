@@ -20,26 +20,21 @@ stages:
         y: val_dice
 metrics:
 - result/coronary_UNet/metrics.json
-- result/UNETR/metrics.json
 - result/DynUNet/metrics.json
 - result/VNet/metrics.json
-- result/SwinUNETR/metrics.json
 - result_fast/UNet/metrics.json
 - result_persistent/proposed_SegResNet/metrics.json
 - result/UNet/metrics.json
 - result/SegResNet/metrics.json
 - result/proposed_SegResNet_distanceMap/metrics.json
-- result/proposed_SegResNet/metrics.json
+- result/proposed_SegResNet_distanceMap_pos/metrics.json
+- result/SwinUNETR/metrics.json
 plots:
 - result/coronary_UNet/plots/metrics:
-    x: step
-- result/UNETR/plots/metrics:
     x: step
 - result/DynUNet/plots/metrics:
     x: step
 - result/VNet/plots/metrics:
-    x: step
-- result/SwinUNETR/plots/metrics:
     x: step
 - result_fast/UNet/plots/metrics:
     x: step
@@ -51,9 +46,11 @@ plots:
     x: step
 - result/proposed_SegResNet_distanceMap/plots/metrics:
     x: step
-- result/proposed_SegResNet/plots/metrics:
+- result/proposed_SegResNet_distanceMap_pos/plots/metrics:
+    x: step
+- result/SwinUNETR/plots/metrics:
     x: step
 artifacts:
   best:
-    path: result/proposed_SegResNet/artifacts/epoch=199-step=7000.ckpt
+    path: result/proposed_SegResNet_distanceMap_pos/artifacts/epoch=199-step=5600.ckpt
     type: model

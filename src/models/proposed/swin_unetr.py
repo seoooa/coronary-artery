@@ -31,27 +31,35 @@ class SPADE(nn.Module):
         return out
 
 class ModifiedUnetrUpBlock(nn.Module):
-    def __init__(self, spatial_dims, in_channels, out_channels, norm_name, res_block, label_nc):
+    def __init__(
+        self, spatial_dims, in_channels, out_channels, norm_name, res_block, label_nc
+    ):
         super().__init__()
-        self.spa_de = SPADE(out_channels, label_nc=label_nc)  # Adjust label_nc as needed
-        self.upconv = nn.ConvTranspose3d(in_channels, out_channels, kernel_size=2, stride=2)
-        self.conv = nn.Conv3d(out_channels * 2, out_channels, kernel_size=3, stride=1, padding=1)
-        self.norm = nn.InstanceNorm3d(out_channels),
+        # First apply regular convolution operations
+        self.transp_conv = nn.ConvTranspose3d(
+            in_channels, out_channels, kernel_size=2, stride=2
+        )
+        self.conv_block = nn.Sequential(
+            nn.Conv3d(out_channels * 2, out_channels, kernel_size=3, padding=1),
+            nn.InstanceNorm3d(out_channels),
+            nn.ReLU(inplace=True),
+        )
+        # SPADE normalization
+        self.spade = SPADE(out_channels, label_nc)
 
-        self.relu = nn.ReLU(inplace=True)
-
-    def forward(self, x, skip, segmap):
-        x = self.upconv(x)
-        x = torch.cat((x, skip), dim=1)
-        # Apply SPADE only if segmap is not None
+    def forward(self, x, skip, segmap=None):
+        # Upsampling
+        up = self.transp_conv(x)
         if segmap is not None:
-            x = self.spa_de(x, segmap)
+            up = self.spade(up, segmap)
+        # Concatenate with skip connection
+        out = torch.cat((up, skip), dim=1)
+        # Apply convolution
+        # Apply SPADE if segmap is provided
 
-        x = self.conv(x)        
-        x = self.norm(x)
-        x = self.relu(x)
-        
-        return x
+        out = self.conv_block(out)
+
+        return out
 
 class SwinUNETRv2(nn.Module):
     def __init__(
@@ -195,9 +203,8 @@ class SwinUNETRv2(nn.Module):
         dec3 = self.decoder5(dec4, hidden_states_out[3], segmap)
         dec2 = self.decoder4(dec3, enc3, segmap)
         dec1 = self.decoder3(dec2, enc2, segmap)
+        dec0 = self.decoder2(dec1, enc1, segmap)
         
-        # Do not apply segmap in decoder2 and decoder1
-        dec0 = self.decoder2(dec1, enc1, None)
         out = self.decoder1(dec0, enc0, None)
         
         logits = self.out(out)

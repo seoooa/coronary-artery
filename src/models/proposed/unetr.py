@@ -35,7 +35,8 @@ class SPADE(nn.Module):
 
         nhidden = 128
         self.mlp_shared = nn.Sequential(
-            nn.Conv3d(label_nc, nhidden, kernel_size=3, padding=1), nn.ReLU()
+            nn.Conv3d(label_nc, nhidden, kernel_size=3, padding=1),
+            nn.ReLU()
         )
         self.mlp_gamma = nn.Conv3d(nhidden, norm_nc, kernel_size=3, padding=1)
         self.mlp_beta = nn.Conv3d(nhidden, norm_nc, kernel_size=3, padding=1)
@@ -43,7 +44,7 @@ class SPADE(nn.Module):
     def forward(self, x, segmap):
         normalized = self.param_free_norm(x)
 
-        segmap = F.interpolate(segmap, size=x.size()[2:], mode="nearest")
+        segmap = F.interpolate(segmap, size=x.size()[2:], mode='nearest')
         actv = self.mlp_shared(segmap)
         gamma = self.mlp_gamma(actv)
         beta = self.mlp_beta(actv)
@@ -72,12 +73,13 @@ class ModifiedUnetrUpBlock(nn.Module):
     def forward(self, x, skip, segmap=None):
         # Upsampling
         up = self.transp_conv(x)
+        if segmap is not None:
+            up = self.spade(up, segmap)
         # Concatenate with skip connection
-        cat = torch.cat((up, skip), dim=1)
+        out = torch.cat((up, skip), dim=1)
         # Apply convolution
         # Apply SPADE if segmap is provided
-        if segmap is not None:
-            out = self.spade(cat, segmap)
+
         out = self.conv_block(out)
 
         return out

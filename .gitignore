@@ -15,6 +15,7 @@ uv.lock
 *.nii
 *.gz
 *.npy
+*.nrrd
 
 #weights
 *.pth

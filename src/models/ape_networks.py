@@ -1,6 +1,6 @@
 import autorootcwd
 import torch
-from .proposed.segresnet import SegResNet
+from .proposed.ape_segresnet import APESegResNet
 from .proposed.unetr import UNETR
 from .proposed.swin_unetr import SwinUNETRv2
 
@@ -8,7 +8,7 @@ class NetworkFactory:
     @staticmethod
     def create_network(arch_name, patch_size=(96, 96, 96), label_nc=8):
         if arch_name == "SegResNet":
-            return SegResNet(
+            return APESegResNet(
                 spatial_dims=3,
                 in_channels=1,
                 out_channels=2,
@@ -17,12 +17,13 @@ class NetworkFactory:
                 blocks_up=(1, 1, 1),
                 dropout_prob=0.2,
                 label_nc=label_nc,
+                ape_nc=3,
             )
         
         elif arch_name == "UNETR":
             return UNETR(
-                in_channels=1,
-                out_channels=2,
+                in_channel=1,
+                out_channel=2,
                 img_size=patch_size,
                 # feature_size=16,
                 label_nc=label_nc,
