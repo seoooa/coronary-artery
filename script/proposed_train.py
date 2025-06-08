@@ -59,20 +59,6 @@ class CoronaryArterySegmentModel(pytorch_lightning.LightningModule):
         self.post_label = Compose(
             [EnsureType("tensor", device="cpu"), AsDiscrete(to_onehot=2)]
         )
-        # self.dice_metric = DiceMetric(
-        #     include_background=False, reduction="mean", get_not_nans=False
-        # )
-        # self.hausdorff_metric = HausdorffDistanceMetric(
-        #     include_background=False, percentile=95, reduction="mean"
-        # )
-
-        # self.hausdorff_metric = HausdorffDistanceMetric(
-        #     include_background=False, 
-        #     percentile=85,
-        #     directed=False,
-        #     reduction="mean"
-        # )
-        # self.mean_iou_metric = MeanIoU(include_background=False, reduction="mean")
         self.best_val_dice = 0
         self.best_val_epoch = 0
         self.validation_step_outputs = []
@@ -133,31 +119,6 @@ class CoronaryArterySegmentModel(pytorch_lightning.LightningModule):
         outputs = [self.post_pred(i) for i in decollate_batch(outputs)]
         labels = [self.post_label(i) for i in decollate_batch(labels)]
 
-        # self.dice_metric(y_pred=outputs, y=labels)
-        # self.hausdorff_metric(y_pred=outputs, y=labels)
-        # self.mean_iou_metric(y_pred=outputs, y=labels)
-
-        # Hausdorff
-        # try:
-        #     # 1. downsampling
-        #     # original size is 96x96x96
-        #     # resize to 60x60x60
-        #     resize_transform = Resize(
-        #         spatial_size=[60, 60, 60],
-        #         mode="nearest"
-        #     )
-            
-        #     downsampled_outputs = [resize_transform(i) for i in outputs]
-        #     downsampled_labels = [resize_transform(i) for i in labels]
-            
-        #     # 2. each processing
-        #     for idx in range(len(downsampled_outputs)):
-        #         self.hausdorff_metric(
-        #             y_pred=downsampled_outputs[idx].unsqueeze(0),
-        #             y=downsampled_labels[idx].unsqueeze(0)
-        #         )
-        # except Exception as e:
-        #     print(f"[ERROR] Hausdorff metric calculation error in validation step: {e}")
         MetricFactory.calculate_metrics(self.metrics, outputs, labels)
         
         d = {"val_loss": loss, "val_number": len(outputs)}
@@ -443,7 +404,7 @@ def main(
     print_monai_config()
 
     # set up loggers and checkpoints
-    log_dir = f"result/proposed_{arch_name}" + ("_distanceMap" if guide == "distanceMap" else "")
+    log_dir = f"result/proposed_{arch_name}" + ("_dstMap" if guide == "distanceMap" else "_segMap")
     os.makedirs(log_dir, exist_ok=True)
 
     # GPU Setting

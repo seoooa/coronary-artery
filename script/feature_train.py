@@ -7,15 +7,14 @@ from monai.transforms import (
     AsDiscrete,
     Resize,
 )
-from monai.networks.nets import AttentionUnet, SegResNet, UNETR, SwinUNETR, VNet
-from monai.networks.nets import UNet
-from monai.networks.layers import Norm
+
 from lightning.pytorch.callbacks import (
     BatchSizeFinder,
     LearningRateFinder,
     StochasticWeightAveraging,
 )
 
+from monai.metrics import DiceMetric, HausdorffDistanceMetric, MeanIoU
 from monai.inferers import sliding_window_inference
 from monai.data import decollate_batch
 from monai.config import print_config
@@ -27,8 +26,10 @@ import nibabel as nib
 from pathlib import Path
 import csv
 from dvclive.lightning import DVCLiveLogger
-from src.data.dataloader import CoronaryArteryDataModule
-from src.models.networks import NetworkFactory
+import matplotlib.pyplot as plt
+
+from src.data.feature_dataloader import CoronaryArteryDataModule
+from src.models.proposed_networks import NetworkFactory
 from src.losses.losses import LossFactory
 from src.metrics.metrics import MetricFactory
 
@@ -38,7 +39,7 @@ def print_monai_config():
         print_config()
 
 class CoronaryArterySegmentModel(pytorch_lightning.LightningModule):
-    """Unguided model for comparison"""
+    """Proposed model"""
 
     def __init__(
         self,
@@ -47,20 +48,21 @@ class CoronaryArterySegmentModel(pytorch_lightning.LightningModule):
         batch_size=1,
         lr=1e-3,
         patch_size=(96, 96, 96),
+        save_feature_maps=False,
+        feature_save_epoch_interval=50,
+        guide="none",
     ):
         super().__init__()
 
         self._model = NetworkFactory.create_network(arch_name, patch_size)
         self.loss_function = LossFactory.create_loss(loss_fn)
         self.metrics = MetricFactory.create_metrics()
-
         self.post_pred = Compose(
             [EnsureType("tensor", device="cpu"), AsDiscrete(argmax=True, to_onehot=2)]
         )
         self.post_label = Compose(
             [EnsureType("tensor", device="cpu"), AsDiscrete(to_onehot=2)]
         )
-        
         self.best_val_dice = 0
         self.best_val_epoch = 0
         self.validation_step_outputs = []
@@ -69,17 +71,59 @@ class CoronaryArterySegmentModel(pytorch_lightning.LightningModule):
         self.patch_size = patch_size
         self.result_folder = Path("result")  # Define the result folder
         self.test_step_outputs = []
+        
+        # Feature map visualization 관련 파라미터
+        self.save_feature_maps = save_feature_maps
+        self.feature_save_epoch_interval = feature_save_epoch_interval
+        self.feature_maps = {}
+        self.guide = guide
 
-    def forward(self, x):
-        return self._model(x)
+        # Feature map을 저장하기 위한 hook 등록 (SegResNet 모델인 경우에만)
+        if arch_name == "SegResNet" and self.save_feature_maps:
+            self._register_hooks()
 
+    def _register_hooks(self):
+        """SegResNet 모델의 중간 feature map을 저장하기 위한 hook 등록"""
+        # Encoder 출력 feature map을 저장하기 위한 hook
+        def get_encoder_hook(name):
+            def hook(module, input, output):
+                if self.current_epoch % self.feature_save_epoch_interval == 0:
+                    self.feature_maps[name] = output.detach().cpu()
+            return hook
+
+        # Decoder 출력 feature map을 저장하기 위한 hook
+        def get_decoder_hook(name):
+            def hook(module, input, output):
+                if self.current_epoch % self.feature_save_epoch_interval == 0:
+                    self.feature_maps[name] = output.detach().cpu()
+            return hook
+
+        # Initial convolution layer
+        self._model.convInit.register_forward_hook(get_encoder_hook("initial_conv"))
+        
+        # Encoder layers
+        for i, layer in enumerate(self._model.down_layers):
+            layer.register_forward_hook(get_encoder_hook(f"encoder_{i}"))
+        
+        # Decoder layers
+        for i, layer in enumerate(self._model.up_layers):
+            layer.register_forward_hook(get_decoder_hook(f"decoder_{i}"))
+
+    def forward(self, x, seg):
+        # Modify the forward method to include seg
+        return self._model(x, seg)
+    
     def configure_optimizers(self):
         optimizer = torch.optim.Adam(self._model.parameters(), self.lr)
         return optimizer
 
     def training_step(self, batch, batch_idx):
-        images, labels = batch["image"], batch["label"]
-        output = self.forward(images)
+        images, labels, segs = (
+            batch["image"],
+            batch["label"],
+            batch["seg"],
+        )  # Include seg
+        output = self.forward(images, segs)  # Pass seg to forward
         loss = self.loss_function(output, labels)
         metrics = loss.item()
         self.log(
@@ -89,20 +133,38 @@ class CoronaryArterySegmentModel(pytorch_lightning.LightningModule):
             on_epoch=True,
             prog_bar=True,
             logger=True,
-        )
+        )   
+        
+        # 특정 epoch마다 feature map 저장
+        if self.save_feature_maps and self.current_epoch % self.feature_save_epoch_interval == 0:
+            self._save_feature_maps(batch_idx)
+            
         return loss
 
     def validation_step(self, batch, batch_idx):
-        images, labels = batch["image"], batch["label"]
+        images, labels, segs = (
+            batch["image"],
+            batch["label"],
+            batch["seg"],
+        )  # Include seg
+
+        inputs = torch.cat((images, segs), dim=1)
+
         roi_size = self.patch_size
         sw_batch_size = 4
         outputs = sliding_window_inference(
-            images, roi_size, sw_batch_size, self.forward
+            inputs,
+            roi_size,
+            sw_batch_size,
+            lambda x: self.forward(
+                x[:, :1, ...], x[:, 1:, ...]
+            ),  # Split before forward
         )
+
         loss = self.loss_function(outputs, labels)
         outputs = [self.post_pred(i) for i in decollate_batch(outputs)]
         labels = [self.post_label(i) for i in decollate_batch(labels)]
-        
+
         MetricFactory.calculate_metrics(self.metrics, outputs, labels)
         
         d = {"val_loss": loss, "val_number": len(outputs)}
@@ -114,10 +176,10 @@ class CoronaryArterySegmentModel(pytorch_lightning.LightningModule):
         for output in self.validation_step_outputs:
             val_loss += output["val_loss"].sum().item()
             num_items += output["val_number"]
-        
+
         metric_results = MetricFactory.aggregate_metrics(self.metrics)
         MetricFactory.reset_metrics(self.metrics)
-            
+
         mean_val_loss = torch.tensor(val_loss / num_items, device=self.device)
         log_dict = {
             "val_dice": torch.tensor(metric_results["dice"], device=self.device),
@@ -160,6 +222,10 @@ class CoronaryArterySegmentModel(pytorch_lightning.LightningModule):
         outputs_np = outputs.detach().cpu().numpy().squeeze()[1]
         labels_np = labels.detach().cpu().numpy().squeeze()[1]
 
+        # inputs_np = np.moveaxis(inputs_np, 0, -1)
+        # outputs_np = np.moveaxis(outputs_np, 0, -1)
+        # labels_np = np.moveaxis(labels_np, 0, -1)
+
         # Save inputs as NIfTI
         inputs_nifti = nib.Nifti1Image(
             inputs_np,
@@ -187,18 +253,31 @@ class CoronaryArterySegmentModel(pytorch_lightning.LightningModule):
         print(f"Labels: {save_folder / f'{filename_prefix}_labels.nii.gz'}")
 
     def test_step(self, batch, batch_idx):
-        images, labels = batch["image"], batch["label"]
+        images, labels, segs = (
+            batch["image"],
+            batch["label"],
+            batch["seg"],
+        )  # Include seg
         roi_size = self.patch_size
         sw_batch_size = 4
+        # Concatenate images and segs along the channel dimension
+        inputs = torch.cat((images, segs), dim=1)
+
         outputs = sliding_window_inference(
-            images, roi_size, sw_batch_size, self.forward
+            inputs,
+            roi_size,
+            sw_batch_size,
+            lambda x: self.forward(
+                x[:, :1, ...], x[:, 1:, ...]
+            ),  # Split before forward
         )
+
         outputs = [self.post_pred(i) for i in decollate_batch(outputs)]
         labels = [self.post_label(i) for i in decollate_batch(labels)]
-        
+
         filename = batch["image"].meta["filename_or_obj"][0]
         patient_id = filename.split("/")[-2]  # Gets patient id (ex. 25) from the path
-        
+
         # Save result
         self.save_result(
             images, outputs[0], labels[0], filename_prefix=f"Subj_{patient_id}"
@@ -310,13 +389,51 @@ class CoronaryArterySegmentModel(pytorch_lightning.LightningModule):
         # Clear the outputs
         self.test_step_outputs.clear()
 
+    def _save_feature_maps(self, batch_idx):
+        """Feature map을 시각화하고 저장하는 함수"""
+        if not self.save_feature_maps or len(self.feature_maps) == 0:
+            return
+            
+        # 저장 경로 생성
+        feature_dir = self.result_folder / f"feature_maps/{self.guide}/epoch_{self.current_epoch}/batch_{batch_idx}"
+        os.makedirs(feature_dir, exist_ok=True)
+        
+        # 각 feature map 저장
+        for name, feature_map in self.feature_maps.items():
+            # 배치의 첫 번째 샘플만 사용
+            feature = feature_map[0]  # [C, D, H, W]
+            
+            # 채널 차원에서 중간값 선택
+            mid_channel = feature.shape[0] // 2
+            feature_slice = feature[mid_channel]  # [D, H, W]
+            
+            # 3D 데이터의 중간 슬라이스 선택
+            mid_depth = feature_slice.shape[0] // 2
+            mid_slice = feature_slice[mid_depth].numpy()  # [H, W]
+            
+            # NIfTI 파일로 전체 feature map 저장 
+            feature_nifti = nib.Nifti1Image(
+                feature.numpy(),
+                np.eye(4)
+            )
+            nib.save(feature_nifti, feature_dir / f"{name}_feature.nii.gz")
+            
+            # 2D 슬라이스 이미지 저장
+            plt.figure(figsize=(8, 8))
+            plt.imshow(mid_slice, cmap='viridis')
+            plt.colorbar()
+            plt.title(f"{name} - Channel {mid_channel}, Depth {mid_depth}")
+            plt.savefig(feature_dir / f"{name}_slice.png")
+            plt.close()
+            
+        # Feature map 메모리 정리
+        self.feature_maps = {}
+
 
 @click.command()
 @click.option(
     "--arch_name",
-    type=click.Choice(
-        ["UNet", "AttentionUnet", "SegResNet", "UNETR", "SwinUNETR", "VNet", "DynUNet"]
-    ),
+    type=click.Choice(["UNet", "SegResNet", "UNETR", "SwinUNETR"]),
     default="UNETR",
     help="Choose the architecture name for the model.",
 )
@@ -347,6 +464,24 @@ class CoronaryArterySegmentModel(pytorch_lightning.LightningModule):
     default=None,
     help="Path to a checkpoint file to load for inference.",
 )
+@click.option(
+    "--guide",
+    type=click.Choice(["none", "segMap", "dstMap"]),
+    default="none",
+    help="Choose the guide for training.",
+)
+@click.option(
+    "--save_feature_maps",
+    type=bool,
+    default=False,
+    help="Save feature maps during training.",
+)
+@click.option(
+    "--feature_save_epoch_interval",
+    type=int,
+    default=20,
+    help="Set the interval of saving feature maps (in epochs).",
+)
 def main(
     arch_name,
     loss_fn,
@@ -354,6 +489,9 @@ def main(
     check_val_every_n_epoch,
     gpu_number,
     checkpoint_path,
+    guide,
+    save_feature_maps,
+    feature_save_epoch_interval,
 ):
     # NCCL communication
     os.environ["NCCL_IB_DISABLE"] = "1"
@@ -366,7 +504,7 @@ def main(
     print_monai_config()
 
     # set up loggers and checkpoints
-    log_dir = f"result/{arch_name}"
+    log_dir = f"result/feature_{arch_name}" + ("_" + guide if guide != "none" else "")
     os.makedirs(log_dir, exist_ok=True)
 
     # GPU Setting
@@ -398,7 +536,7 @@ def main(
         accumulate_grad_batches=5,
         precision="bf16-mixed",
         check_val_every_n_epoch=check_val_every_n_epoch,
-        num_sanity_val_steps=1,
+        num_sanity_val_steps=0,
         callbacks=callbacks,
         default_root_dir=log_dir,
     )
@@ -409,7 +547,9 @@ def main(
         batch_size=1,
         patch_size=(96, 96, 96),
         num_workers=4,
-        cache_rate=0.1
+        cache_rate=0,
+        use_distance_map=guide == "dstMap",
+        guide=guide,
     )
     data_module.prepare_data()
 
@@ -425,7 +565,10 @@ def main(
                 checkpoint_path,
                 arch_name=arch_name,
                 loss_fn=loss_fn,
-                batch_size=1
+                batch_size=1,
+                save_feature_maps=save_feature_maps,
+                feature_save_epoch_interval=feature_save_epoch_interval,
+                guide=guide,
             )
             model.result_folder = Path(log_dir)  # Set result folder path
             
@@ -438,7 +581,10 @@ def main(
             model = CoronaryArterySegmentModel(
                 arch_name=arch_name,
                 loss_fn=loss_fn,
-                batch_size=1
+                batch_size=1,
+                save_feature_maps=save_feature_maps,
+                feature_save_epoch_interval=feature_save_epoch_interval,
+                guide=guide,
             )
             model.result_folder = Path(log_dir)  # Set result folder path
             
@@ -454,14 +600,24 @@ def main(
                 checkpoint_path,
                 arch_name=arch_name,
                 loss_fn=loss_fn,
-                batch_size=1
+                batch_size=1,
+                save_feature_maps=save_feature_maps,
+                feature_save_epoch_interval=feature_save_epoch_interval,
+                guide=guide,
             )
             model.result_folder = Path(log_dir)  # Set result folder path
             
             trainer.test(model=model, datamodule=data_module)
     else:
         # Initialize model for training
-        model = CoronaryArterySegmentModel(arch_name=arch_name, loss_fn=loss_fn, batch_size=1)
+        model = CoronaryArterySegmentModel(
+            arch_name=arch_name,
+            loss_fn=loss_fn,
+            batch_size=1,
+            save_feature_maps=save_feature_maps,
+            feature_save_epoch_interval=feature_save_epoch_interval,
+            guide=guide,
+        )
         model.result_folder = Path(log_dir)  # Set result folder path
 
         # Train the model
