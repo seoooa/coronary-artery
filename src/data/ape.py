@@ -111,7 +111,7 @@ def process_directory(input_dir: Path, output_dir: Path, model: APE, device: str
         ape_maps, embeddings = inference(model, image, device=device)
         
         # Save embeddings
-        save_as_numpy(ape_maps, patient_output_dir / "ape_maps.npy")
+        save_as_nifti(ape_maps, nifti_img.affine, patient_output_dir / "ape.nii.gz")
         # save_as_numpy(embeddings, patient_output_dir / "pos_embed.npy")
 
         # save_as_nifti(embeddings, nifti_img.affine, patient_output_dir / "pos_embed.nii.gz")

@@ -1,6 +1,6 @@
 import autorootcwd
 import torch
-from .proposed.segresnet import SegResNet
+from .proposed.segresnet import SegResNet, PPESegResNet
 from .proposed.unetr import UNETR
 from .proposed.swin_unetr import SwinUNETRv2
 
@@ -49,5 +49,15 @@ class NetworkFactory:
             print("Using pretrained self-supervised Swin UNETR SwinTransformer weights!")
             return model
         
+        elif arch_name == "PPESegResNet":
+            return PPESegResNet(
+                spatial_dims=3,
+                in_channels=1,
+                out_channels=2,
+                init_filters=16,
+                blocks_down=(1, 2, 2, 4),
+                blocks_up=(1, 1, 1),
+                dropout_prob=0.2,
+            )
         else:
             raise ValueError(f"Unsupported architecture name: {arch_name}")

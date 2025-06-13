@@ -68,7 +68,7 @@ def ConvertDistanceMap(data):
 class CoronaryArteryDataModule(pl.LightningDataModule):
     def __init__(
         self,
-        data_dir: str = "data/imageCAS_heart",
+        data_dir: str = "data/imageCAS",
         batch_size: int = 4,
         patch_size: tuple = (96, 96, 96),
         num_workers: int = 4, 

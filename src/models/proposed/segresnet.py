@@ -17,6 +17,7 @@ import numpy as np
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
+import math
 
 from monai.networks.blocks.segresnet_block import ResBlock, get_conv_layer, get_upsample_layer
 from monai.networks.layers.factories import Dropout
@@ -24,7 +25,7 @@ from monai.networks.layers.utils import get_act_layer, get_norm_layer
 from monai.utils import UpsampleMode
 from monai.inferers import sliding_window_inference
 
-__all__ = ["SegResNet", "SegResNetVAE", "SPADESegResNet"]
+__all__ = ["SegResNet", "SegResNetVAE", "SPADESegResNet", "PPESegResNet"]
 
 
 class SPADE(nn.Module):
@@ -525,6 +526,188 @@ class SPADESegResNet(nn.Module):
         x, down_x = self.encode(x, segmap)
         down_x.reverse()
         x = self.decode(x, down_x, segmap)
+        return x
+
+
+class PPEModule(nn.Module):
+    def __init__(self, embed_dim, scaling_factor=100.0):
+        """
+        Parameters:
+        -----------
+        embed_dim : int
+            확장할 채널 수 (첫 번째 컨볼루션 이후의 채널 수)
+        scaling_factor : float
+            스케일링 팩터
+        """
+        super().__init__()
+        self.embed_dim = embed_dim
+        self.scaling_factor = scaling_factor
+        
+    def to_sin_cos_embedding(self, ppe_tensor):
+        """
+        PPE를 sinusoidal 임베딩으로 확장
+        """
+        # 텐서로 변환 및 배치, 채널 차원 추가
+        if isinstance(ppe_tensor, np.ndarray):
+            ppe_tensor = torch.from_numpy(ppe_tensor).float()
+        
+        # [H, W, D] -> [1, 1, H, W, D]
+        if len(ppe_tensor.shape) == 3:
+            ppe_tensor = ppe_tensor.unsqueeze(0).unsqueeze(0)
+            
+        # 임베딩 차원 준비 (채널 수의 절반만큼 주파수 생성)
+        frequencies = 2.0 ** torch.arange(-1, self.embed_dim // 2 - 1).float().to(ppe_tensor.device)
+        
+        # PPE를 확장하여 각 주파수와 곱함
+        ppe_expanded = ppe_tensor * frequencies.view(1, -1, 1, 1, 1) * (2 * math.pi)
+        
+        # 사인과 코사인 임베딩 계산
+        sin_embedding = torch.sin(ppe_expanded)
+        cos_embedding = torch.cos(ppe_expanded)
+        
+        # 사인과 코사인 임베딩 결합하여 원하는 채널 수 생성
+        embedding = torch.cat([sin_embedding, cos_embedding], dim=1)
+        
+        return embedding
+        
+    def forward(self, ppe, x):
+        """
+        Parameters:
+        -----------
+        ppe : torch.Tensor
+            PPE 텐서 [H, W, D] 또는 [1, 1, H, W, D]
+        x : torch.Tensor
+            특징 맵 [B, C, H, W, D]
+        """
+        # PPE를 sinusoidal 임베딩으로 확장
+        ppe_embedding = self.to_sin_cos_embedding(ppe)
+        
+        # 배치 크기에 맞게 확장
+        ppe_embedding = ppe_embedding.expand(x.shape[0], -1, -1, -1, -1)
+        
+        # 특징 맵에 더하기
+        x = x + ppe_embedding.to(x.device)
+        
+        return x
+
+
+class PPESegResNet(nn.Module):
+    def __init__(
+        self,
+        spatial_dims: int = 3,
+        init_filters: int = 8,
+        in_channels: int = 1,
+        out_channels: int = 2,
+        dropout_prob: float | None = None,
+        act: tuple | str = ("RELU", {"inplace": True}),
+        norm: tuple | str = ("GROUP", {"num_groups": 8}),
+        norm_name: str = "",
+        num_groups: int = 8,
+        use_conv_final: bool = True,
+        blocks_down: tuple = (1, 2, 2, 4),
+        blocks_up: tuple = (1, 1, 1),
+        upsample_mode: UpsampleMode | str = UpsampleMode.NONTRAINABLE,
+    ):
+        super().__init__()
+        
+        self.spatial_dims = spatial_dims
+        self.init_filters = init_filters
+        self.in_channels = in_channels
+        self.blocks_down = blocks_down
+        self.blocks_up = blocks_up
+        self.dropout_prob = dropout_prob
+        self.act = act
+        self.act_mod = get_act_layer(act)
+        if norm_name:
+            if norm_name.lower() != "group":
+                raise ValueError(f"Deprecating option 'norm_name={norm_name}', please use 'norm' instead.")
+            norm = ("group", {"num_groups": num_groups})
+        self.norm = norm
+        self.upsample_mode = UpsampleMode(upsample_mode)
+        self.use_conv_final = use_conv_final
+        self.convInit = get_conv_layer(spatial_dims, in_channels, init_filters)
+        self.down_layers = self._make_down_layers()
+        self.up_layers, self.up_samples = self._make_up_layers()
+        self.conv_final = self._make_final_conv(out_channels)
+        
+        # PPE 모듈 초기화
+        self.ppe_module = PPEModule(embed_dim=init_filters)
+
+        if dropout_prob is not None:
+            self.dropout = Dropout[Dropout.DROPOUT, spatial_dims](dropout_prob)
+
+    def _make_down_layers(self):
+        down_layers = nn.ModuleList()
+        blocks_down, spatial_dims, filters, norm = (self.blocks_down, self.spatial_dims, self.init_filters, self.norm)
+        for i, item in enumerate(blocks_down):
+            layer_in_channels = filters * 2**i
+            pre_conv = (
+                get_conv_layer(spatial_dims, layer_in_channels // 2, layer_in_channels, stride=2)
+                if i > 0
+                else nn.Identity()
+            )
+            down_layer = nn.Sequential(
+                pre_conv, *[ResBlock(spatial_dims, layer_in_channels, norm=norm, act=self.act) for _ in range(item)]
+            )
+            down_layers.append(down_layer)
+        return down_layers
+
+    def _make_up_layers(self):
+        up_layers, up_samples = nn.ModuleList(), nn.ModuleList()
+        n_up = len(self.blocks_up)
+        for i in range(n_up):
+            sample_in_channels = self.init_filters * 2 ** (n_up - i)
+            up_layer = nn.Sequential(*[
+                ResBlock(self.spatial_dims, sample_in_channels // 2, norm=self.norm, act=self.act)
+            ])
+            up_layers.append(up_layer)
+            up_samples.append(
+                nn.Sequential(
+                    get_conv_layer(self.spatial_dims, sample_in_channels, sample_in_channels // 2, kernel_size=1),
+                    get_upsample_layer(self.spatial_dims, sample_in_channels // 2, upsample_mode=self.upsample_mode),
+                )
+            )
+        return up_layers, up_samples
+
+    def _make_final_conv(self, out_channels: int):
+        return nn.Sequential(
+            get_norm_layer(name=self.norm, spatial_dims=self.spatial_dims, channels=self.init_filters),
+            self.act_mod,
+            get_conv_layer(self.spatial_dims, self.init_filters, out_channels, kernel_size=1, bias=True),
+        )
+
+    def encode(self, x: torch.Tensor, ppe: torch.Tensor) -> tuple[torch.Tensor, list[torch.Tensor]]:
+        # 첫 번째 컨볼루션
+        x = self.convInit(x)
+        
+        # PPE 더하기
+        x = self.ppe_module(ppe, x)
+        
+        if self.dropout_prob is not None:
+            x = self.dropout(x)
+
+        down_x = []
+        for down in self.down_layers:
+            x = down(x)
+            down_x.append(x)
+
+        return x, down_x
+
+    def decode(self, x: torch.Tensor, down_x: list[torch.Tensor]) -> torch.Tensor:
+        for i, (up, upl) in enumerate(zip(self.up_samples, self.up_layers)):
+            x = up(x) + down_x[i + 1]
+            x = upl(x)
+
+        if self.use_conv_final:
+            x = self.conv_final(x)
+            
+        return x
+
+    def forward(self, x: torch.Tensor, ppe: torch.Tensor) -> torch.Tensor:
+        x, down_x = self.encode(x, ppe)
+        down_x.reverse()
+
+        x = self.decode(x, down_x)
         return x
 
 if __name__ == "__main__":

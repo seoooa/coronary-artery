@@ -405,7 +405,7 @@ def main(
 
     # Initialize data module
     data_module = CoronaryArteryDataModule(
-        data_dir="data/imageCAS_heart",
+        data_dir="data/imageCAS",
         batch_size=1,
         patch_size=(96, 96, 96),
         num_workers=4,

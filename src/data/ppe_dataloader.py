@@ -24,12 +24,11 @@ from pathlib import Path
 class CoronaryArteryDataModule(pl.LightningDataModule):
     def __init__(
         self,
-        data_dir: str = "data/imageCAS_heart",
+        data_dir: str = "data/imageCAS",
         batch_size: int = 4,
         patch_size: tuple = (96, 96, 96),
         num_workers: int = 4, 
         cache_rate: float = 0.05,
-        use_distance_map: bool = False
     ):
         super().__init__()
         self.data_dir = Path(data_dir)
@@ -37,7 +36,6 @@ class CoronaryArteryDataModule(pl.LightningDataModule):
         self.patch_size = patch_size
         self.num_workers = num_workers
         self.cache_rate = cache_rate
-        self.use_distance_map = use_distance_map
         self.train_ds = None
         self.val_ds = None
         self.test_ds = None
@@ -52,22 +50,22 @@ class CoronaryArteryDataModule(pl.LightningDataModule):
 
             image_file = str(case_dir / "img.nii.gz")
             label_file = str(case_dir / "label.nii.gz")
-            seg_file = str(case_dir / "ppe_maps.nii.gz")  # roi segmentation
+            pos_file = str(case_dir / "ppe.nii.gz")  # positional embedding
             
-            if os.path.exists(image_file) and os.path.exists(label_file):
+            if os.path.exists(image_file) and os.path.exists(label_file) and os.path.exists(pos_file):
                 data_files.append({
                     "image": image_file,
                     "label": label_file,
-                    "seg": seg_file
+                    "pos": pos_file
                 })
         
         return data_files
 
     def prepare_data(self):
         transforms = [
-            LoadImaged(keys=["image", "label", "seg"]),
-            EnsureChannelFirstd(keys=["image", "label", "seg"]),
-            Orientationd(keys=["image", "label", "seg"], axcodes="RAS"),
+            LoadImaged(keys=["image", "label", "pos"]),
+            EnsureChannelFirstd(keys=["image", "label", "pos"]),
+            Orientationd(keys=["image", "label", "pos"], axcodes="RAS"),
             ScaleIntensityRanged(
                 keys=["image"],
                 a_min=-150,
@@ -76,9 +74,9 @@ class CoronaryArteryDataModule(pl.LightningDataModule):
                 b_max=1.0,
                 clip=True,
             ),
-            CropForegroundd(keys=["image", "label", "seg"], source_key="image"),
+            CropForegroundd(keys=["image", "label", "pos"], source_key="image"),
             RandCropByPosNegLabeld(
-                keys=["image", "label", "seg"],
+                keys=["image", "label", "pos"],
                 label_key="label",
                 spatial_size=(96, 96, 96),
                 pos=1,
@@ -88,12 +86,12 @@ class CoronaryArteryDataModule(pl.LightningDataModule):
                 image_threshold=0,
             ),
             RandFlipd(
-                keys=["image", "label", "seg"],
+                keys=["image", "label", "pos"],
                 spatial_axis=[0],
                 prob=0.10,
             ),
             RandFlipd(
-                keys=["image", "label", "seg"],
+                keys=["image", "label", "pos"],
                 spatial_axis=[1],
                 prob=0.10,
             ),
@@ -103,9 +101,9 @@ class CoronaryArteryDataModule(pl.LightningDataModule):
         self.train_transforms = Compose(transforms)
 
         val_transforms = [
-            LoadImaged(keys=["image", "label", "seg"]),
-            EnsureChannelFirstd(keys=["image", "label", "seg"]),
-            Orientationd(keys=["image", "label", "seg"], axcodes="RAS"),
+            LoadImaged(keys=["image", "label", "pos"]),
+            EnsureChannelFirstd(keys=["image", "label", "pos"]),
+            Orientationd(keys=["image", "label", "pos"], axcodes="RAS"),
             ScaleIntensityRanged(
                 keys=["image"],
                 a_min=-150,
@@ -114,7 +112,7 @@ class CoronaryArteryDataModule(pl.LightningDataModule):
                 b_max=1.0,
                 clip=True,
             ),
-            CropForegroundd(keys=["image", "label", "seg"], source_key="image"),
+            CropForegroundd(keys=["image", "label", "pos"], source_key="image"),
         ]
 
         self.val_transforms = Compose(val_transforms)
@@ -128,11 +126,7 @@ class CoronaryArteryDataModule(pl.LightningDataModule):
         print(f"Found {len(val_files)} validation cases")
         print(f"Found {len(test_files)} test cases")
 
-        # debug transforms
-        if self.use_distance_map:
-            print("DISTANCE MAP Guided Training")
-        else:
-            print("SEGMENTATION MAP Guided Training")
+        print("Positional Embedding (PPE) Training")
 
         self.train_ds = CacheDataset(
             data=train_files,
