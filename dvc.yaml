@@ -32,6 +32,7 @@ metrics:
 - result/UNETR/metrics.json
 - result/proposed_UNETR_dstMap/metrics.json
 - result/proposed_SwinUNETR_dstMap/metrics.json
+- result/PPESegResNet/metrics.json
 plots:
 - result/coronary_UNet/plots/metrics:
     x: step
@@ -58,6 +59,8 @@ plots:
 - result/proposed_UNETR_dstMap/plots/metrics:
     x: step
 - result/proposed_SwinUNETR_dstMap/plots/metrics:
+    x: step
+- result/PPESegResNet/plots/metrics:
     x: step
 artifacts:
   best:

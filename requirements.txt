@@ -143,6 +143,7 @@ scikit-image==0.25.2
 scikit-learn==1.5.1
 scipy==1.15.3
 scmrepo==3.3.11
+seaborn==0.13.2
 semver==3.0.4
 setuptools==80.3.1
 shellingham==1.5.4

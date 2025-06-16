@@ -404,7 +404,8 @@ def main(
     if "," in str(gpu_number):
         # Multiple GPUs
         devices = [int(gpu) for gpu in str(gpu_number).split(",")]
-        strategy = "ddp_find_unused_parameters_true"
+        # strategy = "ddp_find_unused_parameters_true"
+        strategy = "ddp"
     else:
         # Single GPU
         devices = [int(gpu_number)]
