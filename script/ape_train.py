@@ -14,6 +14,7 @@ from lightning.pytorch.callbacks import (
     StochasticWeightAveraging,
 )
 
+from monai.metrics import DiceMetric, HausdorffDistanceMetric, MeanIoU
 from monai.inferers import sliding_window_inference
 from monai.data import decollate_batch
 from monai.config import print_config
@@ -27,7 +28,7 @@ import csv
 from dvclive.lightning import DVCLiveLogger
 
 from src.data.ape_dataloader import CoronaryArteryDataModule
-from src.models.ape_networks import NetworkFactory
+from src.models.proposed_networks import NetworkFactory
 from src.losses.losses import LossFactory
 from src.metrics.metrics import MetricFactory
 
@@ -49,7 +50,7 @@ class CoronaryArterySegmentModel(pytorch_lightning.LightningModule):
     ):
         super().__init__()
 
-        self._model = NetworkFactory.create_network(arch_name, patch_size)
+        self._model = NetworkFactory.create_network(arch_name, patch_size, label_nc=12)
         self.loss_function = LossFactory.create_loss(loss_fn)
         self.metrics = MetricFactory.create_metrics()
         self.post_pred = Compose(
@@ -67,22 +68,21 @@ class CoronaryArterySegmentModel(pytorch_lightning.LightningModule):
         self.result_folder = Path("result")  # Define the result folder
         self.test_step_outputs = []
 
-    def forward(self, x, seg, pos):
-        # Modify the forward method to include seg, pos
-        return self._model(x, seg, pos)
+    def forward(self, x, seg):
+        # Modify the forward method to include seg
+        return self._model(x, seg)
     
     def configure_optimizers(self):
         optimizer = torch.optim.Adam(self._model.parameters(), self.lr)
         return optimizer
 
     def training_step(self, batch, batch_idx):
-        images, labels, segs, poses = (
+        images, labels, segs = (
             batch["image"],
             batch["label"],
             batch["seg"],
-            batch["pos"]
-        )  # Include seg, pos
-        output = self.forward(images, segs, poses)  # Pass seg, pos to forward
+        )  # Include seg
+        output = self.forward(images, segs)  # Pass seg to forward
         loss = self.loss_function(output, labels)
         metrics = loss.item()
         self.log(
@@ -96,14 +96,13 @@ class CoronaryArterySegmentModel(pytorch_lightning.LightningModule):
         return loss
 
     def validation_step(self, batch, batch_idx):
-        images, labels, segs, poses = (
+        images, labels, segs = (
             batch["image"],
             batch["label"],
             batch["seg"],
-            batch["pos"]
-        )  # Include seg, pos
+        )  # Include seg
 
-        inputs = torch.cat((images, segs, poses), dim=1)
+        inputs = torch.cat((images, segs), dim=1)
 
         roi_size = self.patch_size
         sw_batch_size = 4
@@ -112,7 +111,7 @@ class CoronaryArterySegmentModel(pytorch_lightning.LightningModule):
             roi_size,
             sw_batch_size,
             lambda x: self.forward(
-                x[:, :1, ...], x[:, 1:2, ...], x[:, 2:, ...]
+                x[:, :1, ...], x[:, 1:, ...]
             ),  # Split before forward
         )
 
@@ -208,23 +207,22 @@ class CoronaryArterySegmentModel(pytorch_lightning.LightningModule):
         print(f"Labels: {save_folder / f'{filename_prefix}_labels.nii.gz'}")
 
     def test_step(self, batch, batch_idx):
-        images, labels, segs, poses = (
+        images, labels, segs = (
             batch["image"],
             batch["label"],
             batch["seg"],
-            batch["pos"]
-        )  # Include seg, pos
+        )  # Include seg
         roi_size = self.patch_size
         sw_batch_size = 4
         # Concatenate images and segs along the channel dimension
-        inputs = torch.cat((images, segs, poses), dim=1)
+        inputs = torch.cat((images, segs), dim=1)
 
         outputs = sliding_window_inference(
             inputs,
             roi_size,
             sw_batch_size,
             lambda x: self.forward(
-                x[:, :1, ...], x[:, 1:2, ...], x[:, 2:, ...]
+                x[:, :1, ...], x[:, 1:, ...]
             ),  # Split before forward
         )
 
@@ -380,18 +378,6 @@ class CoronaryArterySegmentModel(pytorch_lightning.LightningModule):
     default=None,
     help="Path to a checkpoint file to load for inference.",
 )
-@click.option(
-    "--guide",
-    type=click.Choice(["segMap", "distanceMap"]),
-    default="segMap",
-    help="Choose the guide for training.",
-)
-@click.option(
-    "--pos",
-    type=bool,
-    default=False,
-    help="Use positional embedding for training.",
-)
 def main(
     arch_name,
     loss_fn,
@@ -399,8 +385,6 @@ def main(
     check_val_every_n_epoch,
     gpu_number,
     checkpoint_path,
-    guide,
-    pos
 ):
     # NCCL communication
     os.environ["NCCL_IB_DISABLE"] = "1"
@@ -413,7 +397,7 @@ def main(
     print_monai_config()
 
     # set up loggers and checkpoints
-    log_dir = f"result/proposed_{arch_name}" + ("_distanceMap" if guide == "distanceMap" else "") + ("_pos" if pos else "")
+    log_dir = f"result/APE{arch_name}"
     os.makedirs(log_dir, exist_ok=True)
 
     # GPU Setting
@@ -457,16 +441,8 @@ def main(
         patch_size=(96, 96, 96),
         num_workers=4,
         cache_rate=0,
-        use_distance_map=guide == "distanceMap",
-        use_positional_embedding=pos
     )
-
-    if pos:
-        print("prepare_data_pos")
-        data_module.prepare_data()
-    else:
-        print("prepare_data")
-        data_module.prepare_data()
+    data_module.prepare_data()
 
     if checkpoint_path is not None and os.path.exists(checkpoint_path):
         print(f"Loading checkpoint from {checkpoint_path}")
