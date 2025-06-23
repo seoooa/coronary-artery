@@ -34,8 +34,12 @@ class SPADE(nn.Module):
         self.param_free_norm = nn.BatchNorm3d(norm_nc, affine=False)
 
         nhidden = 128
+        feature_nc = 3
+   
+        self.conv_x_feature = nn.Conv3d(norm_nc, feature_nc, kernel_size=1) # extract 3 channels from x
+
         self.mlp_shared = nn.Sequential(
-            nn.Conv3d(label_nc, nhidden, kernel_size=3, padding=1),
+            nn.Conv3d(label_nc + feature_nc, nhidden, kernel_size=3, padding=1),
             nn.ReLU()
         )
         self.mlp_gamma = nn.Conv3d(nhidden, norm_nc, kernel_size=3, padding=1)
@@ -45,7 +49,14 @@ class SPADE(nn.Module):
         normalized = self.param_free_norm(x)
 
         segmap = F.interpolate(segmap, size=x.size()[2:], mode='nearest')
-        actv = self.mlp_shared(segmap)
+        
+        # extract 3 channels from x
+        x_feature = self.conv_x_feature(x)
+        
+        # concat segmap and x_feature
+        combined_input = torch.cat([segmap, x_feature], dim=1)
+        
+        actv = self.mlp_shared(combined_input)
         gamma = self.mlp_gamma(actv)
         beta = self.mlp_beta(actv)
 
