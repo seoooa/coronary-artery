@@ -315,7 +315,7 @@ class CoronaryArterySegmentModel(pytorch_lightning.LightningModule):
 @click.option(
     "--arch_name",
     type=click.Choice(
-        ["UNet", "AttentionUnet", "SegResNet", "UNETR", "SwinUNETR", "VNet", "DynUNet"]
+        ["UNet", "AttentionUnet", "SegResNet", "UNETR", "SwinUNETR", "VNet", "DynUNet", "nnFormer"]
     ),
     default="UNETR",
     help="Choose the architecture name for the model.",

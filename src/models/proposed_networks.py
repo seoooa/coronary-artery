@@ -3,6 +3,7 @@ import torch
 from .proposed.segresnet import SegResNet, PPESegResNet
 from .proposed.unetr import UNETR
 from .proposed.swin_unetr import SwinUNETRv2
+from .proposed.nnformer import nnFormer
 
 class NetworkFactory:
     @staticmethod
@@ -48,6 +49,20 @@ class NetworkFactory:
             model.swinViT.load_state_dict(swin_vit_weights, strict=False)
             print("Using pretrained self-supervised Swin UNETR SwinTransformer weights!")
             return model
+        
+        elif arch_name == "nnFormer":
+            return nnFormer(
+                crop_size=patch_size,
+                embedding_dim=192,
+                input_channels=1,
+                num_classes=2,
+                depths=[2, 2, 2, 2],
+                num_heads=[6, 12, 24, 48],
+                patch_size=[2, 4, 4],
+                window_size=[4, 4, 8, 4],
+                deep_supervision=False,
+                label_nc=label_nc,
+            )
         
         elif arch_name == "PPESegResNet":
             return PPESegResNet(

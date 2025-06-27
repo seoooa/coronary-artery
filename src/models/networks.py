@@ -1,6 +1,7 @@
 import torch
 from monai.networks.nets import UNet, AttentionUnet, SegResNet, UNETR, SwinUNETR, VNet
 from monai.networks.layers import Norm
+from src.utils.nnFormer.nnFormer_seg import nnFormer
 
 class NetworkFactory:
     @staticmethod
@@ -65,6 +66,19 @@ class NetworkFactory:
                 out_channels=2,
                 act="relu",
                 dropout_prob=0.5,
+            )
+        
+        elif arch_name == "nnFormer":
+            return nnFormer(
+                crop_size=list(patch_size),
+                embedding_dim=192,
+                input_channels=1,
+                num_classes=2,
+                depths=[2, 2, 2, 2],
+                num_heads=[6, 12, 24, 48],
+                patch_size=[2, 4, 4],
+                window_size=[4, 4, 8, 4],
+                deep_supervision=False
             )
         
         else:
