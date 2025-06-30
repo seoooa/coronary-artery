@@ -52,8 +52,8 @@ def create_distance_map(binary_mask):
         distance_map_array = sitk.GetArrayFromImage(distance_map)
         distance_map_tensor = torch.from_numpy(distance_map_array)
         
-        # clip values between -30 and 30
-        clip_value = 30.0
+        # clip values between -60 and 60
+        clip_value = 60.0
         distance_map_tensor = torch.clamp(distance_map_tensor, min=-clip_value, max=clip_value)
         
         # normalize to [-1, 1] range

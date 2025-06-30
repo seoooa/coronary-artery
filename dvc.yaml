@@ -33,6 +33,10 @@ metrics:
 - result/proposed_UNETR_dstMap/metrics.json
 - result/proposed_SwinUNETR_dstMap/metrics.json
 - result/PPESegResNet/metrics.json
+- result/APESegResNet/metrics.json
+- result/feature/proposed_SegResNet_dstMap/metrics.json
+- result/proposed_opt_SegResNet_dstMap/metrics.json
+- result/nnFormer/metrics.json
 plots:
 - result/coronary_UNet/plots/metrics:
     x: step
@@ -62,7 +66,15 @@ plots:
     x: step
 - result/PPESegResNet/plots/metrics:
     x: step
+- result/APESegResNet/plots/metrics:
+    x: step
+- result/feature/proposed_SegResNet_dstMap/plots/metrics:
+    x: step
+- result/proposed_opt_SegResNet_dstMap/plots/metrics:
+    x: step
+- result/nnFormer/plots/metrics:
+    x: step
 artifacts:
   best:
-    path: result/PPESegResNet/artifacts/epoch=199-step=7000.ckpt
+    path: result/proposed_opt_SegResNet_dstMap/artifacts/epoch=199-step=7000.ckpt
     type: model

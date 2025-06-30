@@ -25,43 +25,9 @@ from monai.networks.layers.utils import get_act_layer, get_norm_layer
 from monai.utils import UpsampleMode
 from monai.inferers import sliding_window_inference
 
+from src.models.proposed.spade import SPADE
+
 __all__ = ["SegResNet", "SegResNetVAE", "SPADESegResNet", "PPESegResNet"]
-
-
-class SPADE(nn.Module):
-    def __init__(self, norm_nc, label_nc):
-        super(SPADE, self).__init__()
-        self.param_free_norm = nn.BatchNorm3d(norm_nc, affine=False)
-
-        nhidden = 128
-        feature_nc = 3
-   
-        self.conv_x_feature = nn.Conv3d(norm_nc, feature_nc, kernel_size=1) # extract 3 channels from x
-
-        self.mlp_shared = nn.Sequential(
-            nn.Conv3d(label_nc + feature_nc, nhidden, kernel_size=3, padding=1),
-            nn.ReLU()
-        )
-        self.mlp_gamma = nn.Conv3d(nhidden, norm_nc, kernel_size=3, padding=1)
-        self.mlp_beta = nn.Conv3d(nhidden, norm_nc, kernel_size=3, padding=1)
-
-    def forward(self, x, segmap):
-        normalized = self.param_free_norm(x)
-
-        segmap = F.interpolate(segmap, size=x.size()[2:], mode='nearest')
-        
-        # extract 3 channels from x
-        x_feature = self.conv_x_feature(x)
-        
-        # concat segmap and x_feature
-        combined_input = torch.cat([segmap, x_feature], dim=1)
-        
-        actv = self.mlp_shared(combined_input)
-        gamma = self.mlp_gamma(actv)
-        beta = self.mlp_beta(actv)
-
-        out = normalized * (1 + gamma) + beta
-        return out
 
 
 class SegResNet(nn.Module):
