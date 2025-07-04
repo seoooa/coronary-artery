@@ -4,6 +4,9 @@ from .proposed.segresnet import SegResNet, PPESegResNet
 from .proposed.unetr import UNETR
 from .proposed.swin_unetr import SwinUNETRv2
 from .proposed.nnformer import nnFormer
+from .proposed.csnet_3d import CSNet3D
+from .proposed.attentionunet import AttentionUnet
+from .proposed.vnet import VNet
 
 class NetworkFactory:
     @staticmethod
@@ -74,5 +77,35 @@ class NetworkFactory:
                 blocks_up=(1, 1, 1),
                 dropout_prob=0.2,
             )
+        
+        elif arch_name == "CSNet3D":
+            return CSNet3D(
+                classes=2,
+                channels=1,
+                label_nc=label_nc,
+            )
+        
+        elif arch_name == "AttentionUnet":
+            return AttentionUnet(
+                spatial_dims=3,
+                in_channels=1,
+                out_channels=2,
+                channels=(16, 32, 64, 128, 256),
+                strides=(2, 2, 2, 2),
+                dropout=0.1,
+                label_nc=label_nc,
+            )
+        
+        elif arch_name == "VNet":
+            return VNet(
+                spatial_dims=3,
+                in_channels=1,
+                out_channels=2,
+                act="relu",
+                dropout_prob_down=0.5,
+                dropout_prob_up=(0.5, 0.5),
+                label_nc=label_nc,
+            )
+        
         else:
             raise ValueError(f"Unsupported architecture name: {arch_name}")

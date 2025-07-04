@@ -13,10 +13,9 @@
 #    limitations under the License.
 from multiprocessing.pool import Pool
 
-import autorootcwd
 import numpy as np
 import SimpleITK as sitk
-from src.utils.nnFormer.utilities.task_name_id_conversion import convert_task_name_to_id, convert_id_to_task_name
+from nnformer.utilities.task_name_id_conversion import convert_task_name_to_id, convert_id_to_task_name
 from batchgenerators.utilities.file_and_folder_operations import *
 from nnformer.paths import *
 

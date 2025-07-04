@@ -1,12 +1,11 @@
-import autorootcwd
 from einops import rearrange
 from copy import deepcopy
-from src.utils.nnFormer.utilities.nd_softmax import softmax_helper
+from src.utils.nnformer.utilities.nd_softmax import softmax_helper
 from torch import nn
 import torch
 import numpy as np
-from src.utils.nnFormer.initialization import InitWeights_He
-from src.utils.nnFormer.neural_network import SegmentationNetwork
+from src.utils.nnformer.network_architecture.initialization import InitWeights_He
+from src.utils.nnformer.network_architecture.neural_network import SegmentationNetwork
 import torch.nn.functional
 
 
@@ -346,7 +345,7 @@ class SwinTransformerBlock(nn.Module):
 
         B, L, C = x.shape
         S, H, W = self.input_resolution
-
+   
         assert L == S * H * W, "input feature has wrong size"
         
         shortcut = x
@@ -889,7 +888,7 @@ class final_patch_expanding(nn.Module):
                                          
 class nnFormer(SegmentationNetwork):
 
-    def __init__(self, crop_size=[96,96,96],
+    def __init__(self, crop_size=[64,128,128],
                 embedding_dim=192,
                 input_channels=1, 
                 num_classes=14, 
@@ -898,7 +897,7 @@ class nnFormer(SegmentationNetwork):
                 num_heads=[6, 12, 24, 48],
                 patch_size=[2,4,4],
                 window_size=[4,4,8,4],
-                deep_supervision=False):
+                deep_supervision=True):
       
         super(nnFormer, self).__init__()
         
@@ -949,8 +948,14 @@ class nnFormer(SegmentationNetwork):
             for i in range(len(out)):  
                 seg_outputs.append(self.final[-(i+1)](out[i]))
         
-          
-            return seg_outputs[::-1]
+            # Deep supervision 활성화 시에도 원본 해상도 출력만 반환
+            return seg_outputs[-1]  # 마지막 원소(원본 해상도)만 반환
         else:
             seg_outputs.append(self.final[0](out[-1]))
             return seg_outputs[-1]
+        
+        
+        
+   
+
+   

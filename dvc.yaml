@@ -37,6 +37,1040 @@ metrics:
 - result/feature/proposed_SegResNet_dstMap/metrics.json
 - result/proposed_opt_SegResNet_dstMap/metrics.json
 - result/nnFormer/metrics.json
+- result/nnFormer/metrics.json
+- result/nnFormer/metrics.json
+- result/nnFormer/metrics.json
+- result/nnFormer/metrics.json
+- result/nnFormer/metrics.json
+- result/nnFormer/metrics.json
+- result/nnFormer/metrics.json
+- result/nnFormer/metrics.json
+- result/nnFormer/metrics.json
+- result/nnFormer/metrics.json
+- result/nnFormer/metrics.json
+- result/nnFormer/metrics.json
+- result/nnFormer/metrics.json
+- result/nnFormer/metrics.json
+- result/nnFormer/metrics.json
+- result/nnFormer/metrics.json
+- result/nnFormer/metrics.json
+- result/nnFormer/metrics.json
+- result/nnFormer/metrics.json
+- result/nnFormer/metrics.json
+- result/nnFormer/metrics.json
+- result/nnFormer/metrics.json
+- result/nnFormer/metrics.json
+- result/nnFormer/metrics.json
+- result/nnFormer/metrics.json
+- result/nnFormer/metrics.json
+- result/nnFormer/metrics.json
+- result/nnFormer/metrics.json
+- result/nnFormer/metrics.json
+- result/nnFormer/metrics.json
+- result/nnFormer/metrics.json
+- result/nnFormer/metrics.json
+- result/nnFormer/metrics.json
+- result/nnFormer/metrics.json
+- result/nnFormer/metrics.json
+- result/nnFormer/metrics.json
+- result/nnFormer/metrics.json
+- result/nnFormer/metrics.json
+- result/nnFormer/metrics.json
+- result/nnFormer/metrics.json
+- result/nnFormer/metrics.json
+- result/nnFormer/metrics.json
+- result/nnFormer/metrics.json
+- result/nnFormer/metrics.json
+- result/nnFormer/metrics.json
+- result/nnFormer/metrics.json
+- result/nnFormer/metrics.json
+- result/nnFormer/metrics.json
+- result/nnFormer/metrics.json
+- result/nnFormer/metrics.json
+- result/nnFormer/metrics.json
+- result/nnFormer/metrics.json
+- result/nnFormer/metrics.json
+- result/nnFormer/metrics.json
+- result/nnFormer/metrics.json
+- result/nnFormer/metrics.json
+- result/nnFormer/metrics.json
+- result/nnFormer/metrics.json
+- result/nnFormer/metrics.json
+- result/nnFormer/metrics.json
+- result/nnFormer/metrics.json
+- result/nnFormer/metrics.json
+- result/nnFormer/metrics.json
+- result/nnFormer/metrics.json
+- result/nnFormer/metrics.json
+- result/nnFormer/metrics.json
+- result/nnFormer/metrics.json
+- result/nnFormer/metrics.json
+- result/nnFormer/metrics.json
+- result/nnFormer/metrics.json
+- result/nnFormer/metrics.json
+- result/nnFormer/metrics.json
+- result/nnFormer/metrics.json
+- result/nnFormer/metrics.json
+- result/nnFormer/metrics.json
+- result/nnFormer/metrics.json
+- result/nnFormer/metrics.json
+- result/nnFormer/metrics.json
+- result/nnFormer/metrics.json
+- result/nnFormer/metrics.json
+- result/nnFormer/metrics.json
+- result/nnFormer/metrics.json
+- result/nnFormer/metrics.json
+- result/nnFormer/metrics.json
+- result/nnFormer/metrics.json
+- result/nnFormer/metrics.json
+- result/nnFormer/metrics.json
+- result/nnFormer/metrics.json
+- result/nnFormer/metrics.json
+- result/nnFormer/metrics.json
+- result/nnFormer/metrics.json
+- result/nnFormer/metrics.json
+- result/nnFormer/metrics.json
+- result/nnFormer/metrics.json
+- result/nnFormer/metrics.json
+- result/nnFormer/metrics.json
+- result/nnFormer/metrics.json
+- result/nnFormer/metrics.json
+- result/nnFormer/metrics.json
+- result/nnFormer/metrics.json
+- result/nnFormer/metrics.json
+- result/nnFormer/metrics.json
+- result/nnFormer/metrics.json
+- result/nnFormer/metrics.json
+- result/nnFormer/metrics.json
+- result/nnFormer/metrics.json
+- result/nnFormer/metrics.json
+- result/nnFormer/metrics.json
+- result/nnFormer/metrics.json
+- result/nnFormer/metrics.json
+- result/nnFormer/metrics.json
+- result/nnFormer/metrics.json
+- result/nnFormer/metrics.json
+- result/nnFormer/metrics.json
+- result/nnFormer/metrics.json
+- result/nnFormer/metrics.json
+- result/nnFormer/metrics.json
+- result/nnFormer/metrics.json
+- result/nnFormer/metrics.json
+- result/nnFormer/metrics.json
+- result/nnFormer/metrics.json
+- result/nnFormer/metrics.json
+- result/nnFormer/metrics.json
+- result/nnFormer/metrics.json
+- result/nnFormer/metrics.json
+- result/nnFormer/metrics.json
+- result/nnFormer/metrics.json
+- result/nnFormer/metrics.json
+- result/nnFormer/metrics.json
+- result/nnFormer/metrics.json
+- result/nnFormer/metrics.json
+- result/nnFormer/metrics.json
+- result/nnFormer/metrics.json
+- result/nnFormer/metrics.json
+- result/nnFormer/metrics.json
+- result/nnFormer/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/DSCNet/metrics.json
+- result/DSCNet/metrics.json
+- result/DSCNet/metrics.json
+- result/DSCNet/metrics.json
+- result/DSCNet/metrics.json
+- result/DSCNet/metrics.json
+- result/DSCNet/metrics.json
+- result/DSCNet/metrics.json
+- result/DSCNet/metrics.json
+- result/DSCNet/metrics.json
+- result/DSCNet/metrics.json
+- result/DSCNet/metrics.json
+- result/DSCNet/metrics.json
+- result/DSCNet/metrics.json
+- result/DSCNet/metrics.json
+- result/DSCNet/metrics.json
+- result/DSCNet/metrics.json
+- result/DSCNet/metrics.json
+- result/DSCNet/metrics.json
+- result/DSCNet/metrics.json
+- result/DSCNet/metrics.json
+- result/DSCNet/metrics.json
+- result/DSCNet/metrics.json
+- result/DSCNet/metrics.json
+- result/DSCNet/metrics.json
+- result/proposed_CSNet3D_dstMap/metrics.json
+- result/proposed_CSNet3D_dstMap/metrics.json
+- result/proposed_CSNet3D_dstMap/metrics.json
+- result/proposed_CSNet3D_dstMap/metrics.json
+- result/proposed_CSNet3D_dstMap/metrics.json
+- result/proposed_CSNet3D_dstMap/metrics.json
+- result/proposed_CSNet3D_dstMap/metrics.json
+- result/proposed_CSNet3D_dstMap/metrics.json
+- result/proposed_CSNet3D_dstMap/metrics.json
+- result/proposed_CSNet3D_dstMap/metrics.json
+- result/proposed_CSNet3D_dstMap/metrics.json
+- result/proposed_CSNet3D_dstMap/metrics.json
+- result/proposed_CSNet3D_dstMap/metrics.json
+- result/proposed_CSNet3D_dstMap/metrics.json
+- result/proposed_CSNet3D_dstMap/metrics.json
+- result/proposed_CSNet3D_dstMap/metrics.json
+- result/proposed_CSNet3D_dstMap/metrics.json
+- result/proposed_CSNet3D_dstMap/metrics.json
+- result/proposed_CSNet3D_dstMap/metrics.json
+- result/proposed_CSNet3D_dstMap/metrics.json
+- result/proposed_CSNet3D_dstMap/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/proposed_CSNet3D_dstMap/metrics.json
+- result/proposed_CSNet3D_dstMap/metrics.json
+- result/proposed_CSNet3D_dstMap/metrics.json
+- result/proposed_CSNet3D_dstMap/metrics.json
+- result/proposed_CSNet3D_dstMap/metrics.json
+- result/proposed_CSNet3D_dstMap/metrics.json
+- result/proposed_CSNet3D_dstMap/metrics.json
+- result/proposed_CSNet3D_dstMap/metrics.json
+- result/proposed_CSNet3D_dstMap/metrics.json
+- result/proposed_CSNet3D_dstMap/metrics.json
+- result/proposed_CSNet3D_dstMap/metrics.json
+- result/proposed_CSNet3D_dstMap/metrics.json
+- result/proposed_CSNet3D_dstMap/metrics.json
+- result/proposed_CSNet3D_dstMap/metrics.json
+- result/proposed_CSNet3D_dstMap/metrics.json
+- result/proposed_CSNet3D_dstMap/metrics.json
+- result/proposed_CSNet3D_dstMap/metrics.json
+- result/proposed_CSNet3D_dstMap/metrics.json
+- result/proposed_CSNet3D_dstMap/metrics.json
+- result/proposed_CSNet3D_dstMap/metrics.json
+- result/proposed_CSNet3D_dstMap/metrics.json
+- result/proposed_CSNet3D_dstMap/metrics.json
+- result/proposed_CSNet3D_dstMap/metrics.json
+- result/proposed_CSNet3D_dstMap/metrics.json
+- result/proposed_CSNet3D_dstMap/metrics.json
+- result/proposed_CSNet3D_dstMap/metrics.json
+- result/proposed_CSNet3D_dstMap/metrics.json
+- result/proposed_CSNet3D_dstMap/metrics.json
+- result/proposed_CSNet3D_dstMap/metrics.json
+- result/proposed_CSNet3D_dstMap/metrics.json
+- result/proposed_CSNet3D_dstMap/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/CSNet3D/metrics.json
+- result/proposed_CSNet3D_dstMap/metrics.json
+- result/proposed_CSNet3D_dstMap/metrics.json
+- result/proposed_CSNet3D_dstMap/metrics.json
+- result/proposed_CSNet3D_dstMap/metrics.json
+- result/proposed_CSNet3D_dstMap/metrics.json
+- result/proposed_CSNet3D_dstMap/metrics.json
+- result/proposed_CSNet3D_dstMap/metrics.json
+- result/proposed_CSNet3D_dstMap/metrics.json
+- result/proposed_CSNet3D_dstMap/metrics.json
+- result/proposed_CSNet3D_dstMap/metrics.json
+- result/proposed_CSNet3D_dstMap/metrics.json
+- result/proposed_CSNet3D_dstMap/metrics.json
+- result/proposed_CSNet3D_dstMap/metrics.json
+- result/proposed_CSNet3D_dstMap/metrics.json
+- result/proposed_CSNet3D_dstMap/metrics.json
+- result/proposed_CSNet3D_dstMap/metrics.json
+- result/proposed_CSNet3D_dstMap/metrics.json
+- result/proposed_CSNet3D_dstMap/metrics.json
+- result/proposed_CSNet3D_dstMap/metrics.json
+- result/proposed_CSNet3D_dstMap/metrics.json
+- result/proposed_CSNet3D_dstMap/metrics.json
+- result/proposed_CSNet3D_dstMap/metrics.json
+- result/proposed_CSNet3D_dstMap/metrics.json
+- result/proposed_CSNet3D_dstMap/metrics.json
+- result/proposed_CSNet3D_dstMap/metrics.json
+- result/proposed_CSNet3D_dstMap/metrics.json
+- result/proposed_CSNet3D_dstMap/metrics.json
+- result/proposed_CSNet3D_dstMap/metrics.json
+- result/proposed_CSNet3D_dstMap/metrics.json
+- result/proposed_CSNet3D_dstMap/metrics.json
+- result/proposed_CSNet3D_dstMap/metrics.json
+- result/proposed_CSNet3D_dstMap/metrics.json
+- result/proposed_CSNet3D_dstMap/metrics.json
+- result/proposed_CSNet3D_dstMap/metrics.json
+- result/proposed_CSNet3D_dstMap/metrics.json
+- result/proposed_CSNet3D_dstMap/metrics.json
+- result/proposed_CSNet3D_dstMap/metrics.json
+- result/proposed_CSNet3D_dstMap/metrics.json
+- result/proposed_CSNet3D_dstMap/metrics.json
+- result/nnFormer/metrics.json
+- result/nnFormer/metrics.json
+- result/nnFormer/metrics.json
+- result/nnFormer/metrics.json
+- result/nnFormer/metrics.json
+- result/nnFormer/metrics.json
+- result/nnFormer/metrics.json
+- result/nnFormer/metrics.json
+- result/nnFormer/metrics.json
+- result/nnFormer/metrics.json
+- result/nnFormer/metrics.json
+- result/nnFormer/metrics.json
+- result/nnFormer/metrics.json
+- result/nnFormer/metrics.json
+- result/nnFormer/metrics.json
+- result/nnFormer/metrics.json
+- result/nnFormer/metrics.json
+- result/nnFormer/metrics.json
+- result/nnFormer/metrics.json
+- result/nnFormer/metrics.json
+- result/nnFormer/metrics.json
+- result/nnFormer/metrics.json
+- result/nnFormer/metrics.json
+- result/nnFormer/metrics.json
+- result/nnFormer/metrics.json
+- result/nnFormer/metrics.json
+- result/nnFormer/metrics.json
+- result/nnFormer/metrics.json
+- result/nnFormer/metrics.json
+- result/nnFormer/metrics.json
+- result/nnFormer/metrics.json
+- result/nnFormer/metrics.json
+- result/nnFormer/metrics.json
+- result/nnFormer/metrics.json
+- result/nnFormer/metrics.json
+- result/nnFormer/metrics.json
+- result/nnFormer/metrics.json
+- result/nnFormer/metrics.json
+- result/nnFormer/metrics.json
+- result/nnFormer/metrics.json
+- result/nnFormer/metrics.json
+- result/nnFormer/metrics.json
+- result/nnFormer/metrics.json
+- result/nnFormer/metrics.json
+- result/nnFormer/metrics.json
+- result/nnFormer/metrics.json
+- result/nnFormer/metrics.json
+- result/AttentionUnet/metrics.json
+- result/AttentionUnet/metrics.json
+- result/AttentionUnet/metrics.json
+- result/AttentionUnet/metrics.json
+- result/AttentionUnet/metrics.json
+- result/AttentionUnet/metrics.json
+- result/AttentionUnet/metrics.json
+- result/AttentionUnet/metrics.json
+- result/AttentionUnet/metrics.json
+- result/AttentionUnet/metrics.json
+- result/proposed_AttentionUnet_dstMap/metrics.json
+- result/proposed_AttentionUnet_dstMap/metrics.json
+- result/proposed_AttentionUnet_dstMap/metrics.json
+- result/proposed_AttentionUnet_dstMap/metrics.json
+- result/proposed_AttentionUnet_dstMap/metrics.json
+- result/proposed_AttentionUnet_dstMap/metrics.json
+- result/proposed_AttentionUnet_dstMap/metrics.json
+- result/proposed_AttentionUnet_dstMap/metrics.json
+- result/proposed_AttentionUnet_dstMap/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/VNet/metrics.json
+- result/proposed_VNet_dstMap/metrics.json
+- result/proposed_VNet_dstMap/metrics.json
+- result/proposed_VNet_dstMap/metrics.json
+- result/proposed_VNet_dstMap/metrics.json
+- result/proposed_VNet_dstMap/metrics.json
+- result/proposed_VNet_dstMap/metrics.json
+- result/proposed_VNet_dstMap/metrics.json
+- result/proposed_VNet_dstMap/metrics.json
+- result/proposed_VNet_dstMap/metrics.json
+- result/proposed_VNet_dstMap/metrics.json
+- result/proposed_VNet_dstMap/metrics.json
+- result/proposed_VNet_dstMap/metrics.json
+- result/proposed_VNet_dstMap/metrics.json
+- result/proposed_VNet_dstMap/metrics.json
+- result/proposed_VNet_dstMap/metrics.json
+- result/proposed_VNet_dstMap/metrics.json
+- result/proposed_VNet_dstMap/metrics.json
+- result/proposed_VNet_dstMap/metrics.json
+- result/proposed_VNet_dstMap/metrics.json
+- result/proposed_VNet_dstMap/metrics.json
+- result/proposed_VNet_dstMap/metrics.json
+- result/proposed_VNet_dstMap/metrics.json
 plots:
 - result/coronary_UNet/plots/metrics:
     x: step
@@ -74,7 +1108,2075 @@ plots:
     x: step
 - result/nnFormer/plots/metrics:
     x: step
+- result/nnFormer/plots/metrics:
+    x: step
+- result/nnFormer/plots/metrics:
+    x: step
+- result/nnFormer/plots/metrics:
+    x: step
+- result/nnFormer/plots/metrics:
+    x: step
+- result/nnFormer/plots/metrics:
+    x: step
+- result/nnFormer/plots/metrics:
+    x: step
+- result/nnFormer/plots/metrics:
+    x: step
+- result/nnFormer/plots/metrics:
+    x: step
+- result/nnFormer/plots/metrics:
+    x: step
+- result/nnFormer/plots/metrics:
+    x: step
+- result/nnFormer/plots/metrics:
+    x: step
+- result/nnFormer/plots/metrics:
+    x: step
+- result/nnFormer/plots/metrics:
+    x: step
+- result/nnFormer/plots/metrics:
+    x: step
+- result/nnFormer/plots/metrics:
+    x: step
+- result/nnFormer/plots/metrics:
+    x: step
+- result/nnFormer/plots/metrics:
+    x: step
+- result/nnFormer/plots/metrics:
+    x: step
+- result/nnFormer/plots/metrics:
+    x: step
+- result/nnFormer/plots/metrics:
+    x: step
+- result/nnFormer/plots/metrics:
+    x: step
+- result/nnFormer/plots/metrics:
+    x: step
+- result/nnFormer/plots/metrics:
+    x: step
+- result/nnFormer/plots/metrics:
+    x: step
+- result/nnFormer/plots/metrics:
+    x: step
+- result/nnFormer/plots/metrics:
+    x: step
+- result/nnFormer/plots/metrics:
+    x: step
+- result/nnFormer/plots/metrics:
+    x: step
+- result/nnFormer/plots/metrics:
+    x: step
+- result/nnFormer/plots/metrics:
+    x: step
+- result/nnFormer/plots/metrics:
+    x: step
+- result/nnFormer/plots/metrics:
+    x: step
+- result/nnFormer/plots/metrics:
+    x: step
+- result/nnFormer/plots/metrics:
+    x: step
+- result/nnFormer/plots/metrics:
+    x: step
+- result/nnFormer/plots/metrics:
+    x: step
+- result/nnFormer/plots/metrics:
+    x: step
+- result/nnFormer/plots/metrics:
+    x: step
+- result/nnFormer/plots/metrics:
+    x: step
+- result/nnFormer/plots/metrics:
+    x: step
+- result/nnFormer/plots/metrics:
+    x: step
+- result/nnFormer/plots/metrics:
+    x: step
+- result/nnFormer/plots/metrics:
+    x: step
+- result/nnFormer/plots/metrics:
+    x: step
+- result/nnFormer/plots/metrics:
+    x: step
+- result/nnFormer/plots/metrics:
+    x: step
+- result/nnFormer/plots/metrics:
+    x: step
+- result/nnFormer/plots/metrics:
+    x: step
+- result/nnFormer/plots/metrics:
+    x: step
+- result/nnFormer/plots/metrics:
+    x: step
+- result/nnFormer/plots/metrics:
+    x: step
+- result/nnFormer/plots/metrics:
+    x: step
+- result/nnFormer/plots/metrics:
+    x: step
+- result/nnFormer/plots/metrics:
+    x: step
+- result/nnFormer/plots/metrics:
+    x: step
+- result/nnFormer/plots/metrics:
+    x: step
+- result/nnFormer/plots/metrics:
+    x: step
+- result/nnFormer/plots/metrics:
+    x: step
+- result/nnFormer/plots/metrics:
+    x: step
+- result/nnFormer/plots/metrics:
+    x: step
+- result/nnFormer/plots/metrics:
+    x: step
+- result/nnFormer/plots/metrics:
+    x: step
+- result/nnFormer/plots/metrics:
+    x: step
+- result/nnFormer/plots/metrics:
+    x: step
+- result/nnFormer/plots/metrics:
+    x: step
+- result/nnFormer/plots/metrics:
+    x: step
+- result/nnFormer/plots/metrics:
+    x: step
+- result/nnFormer/plots/metrics:
+    x: step
+- result/nnFormer/plots/metrics:
+    x: step
+- result/nnFormer/plots/metrics:
+    x: step
+- result/nnFormer/plots/metrics:
+    x: step
+- result/nnFormer/plots/metrics:
+    x: step
+- result/nnFormer/plots/metrics:
+    x: step
+- result/nnFormer/plots/metrics:
+    x: step
+- result/nnFormer/plots/metrics:
+    x: step
+- result/nnFormer/plots/metrics:
+    x: step
+- result/nnFormer/plots/metrics:
+    x: step
+- result/nnFormer/plots/metrics:
+    x: step
+- result/nnFormer/plots/metrics:
+    x: step
+- result/nnFormer/plots/metrics:
+    x: step
+- result/nnFormer/plots/metrics:
+    x: step
+- result/nnFormer/plots/metrics:
+    x: step
+- result/nnFormer/plots/metrics:
+    x: step
+- result/nnFormer/plots/metrics:
+    x: step
+- result/nnFormer/plots/metrics:
+    x: step
+- result/nnFormer/plots/metrics:
+    x: step
+- result/nnFormer/plots/metrics:
+    x: step
+- result/nnFormer/plots/metrics:
+    x: step
+- result/nnFormer/plots/metrics:
+    x: step
+- result/nnFormer/plots/metrics:
+    x: step
+- result/nnFormer/plots/metrics:
+    x: step
+- result/nnFormer/plots/metrics:
+    x: step
+- result/nnFormer/plots/metrics:
+    x: step
+- result/nnFormer/plots/metrics:
+    x: step
+- result/nnFormer/plots/metrics:
+    x: step
+- result/nnFormer/plots/metrics:
+    x: step
+- result/nnFormer/plots/metrics:
+    x: step
+- result/nnFormer/plots/metrics:
+    x: step
+- result/nnFormer/plots/metrics:
+    x: step
+- result/nnFormer/plots/metrics:
+    x: step
+- result/nnFormer/plots/metrics:
+    x: step
+- result/nnFormer/plots/metrics:
+    x: step
+- result/nnFormer/plots/metrics:
+    x: step
+- result/nnFormer/plots/metrics:
+    x: step
+- result/nnFormer/plots/metrics:
+    x: step
+- result/nnFormer/plots/metrics:
+    x: step
+- result/nnFormer/plots/metrics:
+    x: step
+- result/nnFormer/plots/metrics:
+    x: step
+- result/nnFormer/plots/metrics:
+    x: step
+- result/nnFormer/plots/metrics:
+    x: step
+- result/nnFormer/plots/metrics:
+    x: step
+- result/nnFormer/plots/metrics:
+    x: step
+- result/nnFormer/plots/metrics:
+    x: step
+- result/nnFormer/plots/metrics:
+    x: step
+- result/nnFormer/plots/metrics:
+    x: step
+- result/nnFormer/plots/metrics:
+    x: step
+- result/nnFormer/plots/metrics:
+    x: step
+- result/nnFormer/plots/metrics:
+    x: step
+- result/nnFormer/plots/metrics:
+    x: step
+- result/nnFormer/plots/metrics:
+    x: step
+- result/nnFormer/plots/metrics:
+    x: step
+- result/nnFormer/plots/metrics:
+    x: step
+- result/nnFormer/plots/metrics:
+    x: step
+- result/nnFormer/plots/metrics:
+    x: step
+- result/nnFormer/plots/metrics:
+    x: step
+- result/nnFormer/plots/metrics:
+    x: step
+- result/nnFormer/plots/metrics:
+    x: step
+- result/nnFormer/plots/metrics:
+    x: step
+- result/nnFormer/plots/metrics:
+    x: step
+- result/nnFormer/plots/metrics:
+    x: step
+- result/nnFormer/plots/metrics:
+    x: step
+- result/nnFormer/plots/metrics:
+    x: step
+- result/nnFormer/plots/metrics:
+    x: step
+- result/nnFormer/plots/metrics:
+    x: step
+- result/nnFormer/plots/metrics:
+    x: step
+- result/nnFormer/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/DSCNet/plots/metrics:
+    x: step
+- result/DSCNet/plots/metrics:
+    x: step
+- result/DSCNet/plots/metrics:
+    x: step
+- result/DSCNet/plots/metrics:
+    x: step
+- result/DSCNet/plots/metrics:
+    x: step
+- result/DSCNet/plots/metrics:
+    x: step
+- result/DSCNet/plots/metrics:
+    x: step
+- result/DSCNet/plots/metrics:
+    x: step
+- result/DSCNet/plots/metrics:
+    x: step
+- result/DSCNet/plots/metrics:
+    x: step
+- result/DSCNet/plots/metrics:
+    x: step
+- result/DSCNet/plots/metrics:
+    x: step
+- result/DSCNet/plots/metrics:
+    x: step
+- result/DSCNet/plots/metrics:
+    x: step
+- result/DSCNet/plots/metrics:
+    x: step
+- result/DSCNet/plots/metrics:
+    x: step
+- result/DSCNet/plots/metrics:
+    x: step
+- result/DSCNet/plots/metrics:
+    x: step
+- result/DSCNet/plots/metrics:
+    x: step
+- result/DSCNet/plots/metrics:
+    x: step
+- result/DSCNet/plots/metrics:
+    x: step
+- result/DSCNet/plots/metrics:
+    x: step
+- result/DSCNet/plots/metrics:
+    x: step
+- result/DSCNet/plots/metrics:
+    x: step
+- result/DSCNet/plots/metrics:
+    x: step
+- result/proposed_CSNet3D_dstMap/plots/metrics:
+    x: step
+- result/proposed_CSNet3D_dstMap/plots/metrics:
+    x: step
+- result/proposed_CSNet3D_dstMap/plots/metrics:
+    x: step
+- result/proposed_CSNet3D_dstMap/plots/metrics:
+    x: step
+- result/proposed_CSNet3D_dstMap/plots/metrics:
+    x: step
+- result/proposed_CSNet3D_dstMap/plots/metrics:
+    x: step
+- result/proposed_CSNet3D_dstMap/plots/metrics:
+    x: step
+- result/proposed_CSNet3D_dstMap/plots/metrics:
+    x: step
+- result/proposed_CSNet3D_dstMap/plots/metrics:
+    x: step
+- result/proposed_CSNet3D_dstMap/plots/metrics:
+    x: step
+- result/proposed_CSNet3D_dstMap/plots/metrics:
+    x: step
+- result/proposed_CSNet3D_dstMap/plots/metrics:
+    x: step
+- result/proposed_CSNet3D_dstMap/plots/metrics:
+    x: step
+- result/proposed_CSNet3D_dstMap/plots/metrics:
+    x: step
+- result/proposed_CSNet3D_dstMap/plots/metrics:
+    x: step
+- result/proposed_CSNet3D_dstMap/plots/metrics:
+    x: step
+- result/proposed_CSNet3D_dstMap/plots/metrics:
+    x: step
+- result/proposed_CSNet3D_dstMap/plots/metrics:
+    x: step
+- result/proposed_CSNet3D_dstMap/plots/metrics:
+    x: step
+- result/proposed_CSNet3D_dstMap/plots/metrics:
+    x: step
+- result/proposed_CSNet3D_dstMap/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/proposed_CSNet3D_dstMap/plots/metrics:
+    x: step
+- result/proposed_CSNet3D_dstMap/plots/metrics:
+    x: step
+- result/proposed_CSNet3D_dstMap/plots/metrics:
+    x: step
+- result/proposed_CSNet3D_dstMap/plots/metrics:
+    x: step
+- result/proposed_CSNet3D_dstMap/plots/metrics:
+    x: step
+- result/proposed_CSNet3D_dstMap/plots/metrics:
+    x: step
+- result/proposed_CSNet3D_dstMap/plots/metrics:
+    x: step
+- result/proposed_CSNet3D_dstMap/plots/metrics:
+    x: step
+- result/proposed_CSNet3D_dstMap/plots/metrics:
+    x: step
+- result/proposed_CSNet3D_dstMap/plots/metrics:
+    x: step
+- result/proposed_CSNet3D_dstMap/plots/metrics:
+    x: step
+- result/proposed_CSNet3D_dstMap/plots/metrics:
+    x: step
+- result/proposed_CSNet3D_dstMap/plots/metrics:
+    x: step
+- result/proposed_CSNet3D_dstMap/plots/metrics:
+    x: step
+- result/proposed_CSNet3D_dstMap/plots/metrics:
+    x: step
+- result/proposed_CSNet3D_dstMap/plots/metrics:
+    x: step
+- result/proposed_CSNet3D_dstMap/plots/metrics:
+    x: step
+- result/proposed_CSNet3D_dstMap/plots/metrics:
+    x: step
+- result/proposed_CSNet3D_dstMap/plots/metrics:
+    x: step
+- result/proposed_CSNet3D_dstMap/plots/metrics:
+    x: step
+- result/proposed_CSNet3D_dstMap/plots/metrics:
+    x: step
+- result/proposed_CSNet3D_dstMap/plots/metrics:
+    x: step
+- result/proposed_CSNet3D_dstMap/plots/metrics:
+    x: step
+- result/proposed_CSNet3D_dstMap/plots/metrics:
+    x: step
+- result/proposed_CSNet3D_dstMap/plots/metrics:
+    x: step
+- result/proposed_CSNet3D_dstMap/plots/metrics:
+    x: step
+- result/proposed_CSNet3D_dstMap/plots/metrics:
+    x: step
+- result/proposed_CSNet3D_dstMap/plots/metrics:
+    x: step
+- result/proposed_CSNet3D_dstMap/plots/metrics:
+    x: step
+- result/proposed_CSNet3D_dstMap/plots/metrics:
+    x: step
+- result/proposed_CSNet3D_dstMap/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/CSNet3D/plots/metrics:
+    x: step
+- result/proposed_CSNet3D_dstMap/plots/metrics:
+    x: step
+- result/proposed_CSNet3D_dstMap/plots/metrics:
+    x: step
+- result/proposed_CSNet3D_dstMap/plots/metrics:
+    x: step
+- result/proposed_CSNet3D_dstMap/plots/metrics:
+    x: step
+- result/proposed_CSNet3D_dstMap/plots/metrics:
+    x: step
+- result/proposed_CSNet3D_dstMap/plots/metrics:
+    x: step
+- result/proposed_CSNet3D_dstMap/plots/metrics:
+    x: step
+- result/proposed_CSNet3D_dstMap/plots/metrics:
+    x: step
+- result/proposed_CSNet3D_dstMap/plots/metrics:
+    x: step
+- result/proposed_CSNet3D_dstMap/plots/metrics:
+    x: step
+- result/proposed_CSNet3D_dstMap/plots/metrics:
+    x: step
+- result/proposed_CSNet3D_dstMap/plots/metrics:
+    x: step
+- result/proposed_CSNet3D_dstMap/plots/metrics:
+    x: step
+- result/proposed_CSNet3D_dstMap/plots/metrics:
+    x: step
+- result/proposed_CSNet3D_dstMap/plots/metrics:
+    x: step
+- result/proposed_CSNet3D_dstMap/plots/metrics:
+    x: step
+- result/proposed_CSNet3D_dstMap/plots/metrics:
+    x: step
+- result/proposed_CSNet3D_dstMap/plots/metrics:
+    x: step
+- result/proposed_CSNet3D_dstMap/plots/metrics:
+    x: step
+- result/proposed_CSNet3D_dstMap/plots/metrics:
+    x: step
+- result/proposed_CSNet3D_dstMap/plots/metrics:
+    x: step
+- result/proposed_CSNet3D_dstMap/plots/metrics:
+    x: step
+- result/proposed_CSNet3D_dstMap/plots/metrics:
+    x: step
+- result/proposed_CSNet3D_dstMap/plots/metrics:
+    x: step
+- result/proposed_CSNet3D_dstMap/plots/metrics:
+    x: step
+- result/proposed_CSNet3D_dstMap/plots/metrics:
+    x: step
+- result/proposed_CSNet3D_dstMap/plots/metrics:
+    x: step
+- result/proposed_CSNet3D_dstMap/plots/metrics:
+    x: step
+- result/proposed_CSNet3D_dstMap/plots/metrics:
+    x: step
+- result/proposed_CSNet3D_dstMap/plots/metrics:
+    x: step
+- result/proposed_CSNet3D_dstMap/plots/metrics:
+    x: step
+- result/proposed_CSNet3D_dstMap/plots/metrics:
+    x: step
+- result/proposed_CSNet3D_dstMap/plots/metrics:
+    x: step
+- result/proposed_CSNet3D_dstMap/plots/metrics:
+    x: step
+- result/proposed_CSNet3D_dstMap/plots/metrics:
+    x: step
+- result/proposed_CSNet3D_dstMap/plots/metrics:
+    x: step
+- result/proposed_CSNet3D_dstMap/plots/metrics:
+    x: step
+- result/proposed_CSNet3D_dstMap/plots/metrics:
+    x: step
+- result/proposed_CSNet3D_dstMap/plots/metrics:
+    x: step
+- result/nnFormer/plots/metrics:
+    x: step
+- result/nnFormer/plots/metrics:
+    x: step
+- result/nnFormer/plots/metrics:
+    x: step
+- result/nnFormer/plots/metrics:
+    x: step
+- result/nnFormer/plots/metrics:
+    x: step
+- result/nnFormer/plots/metrics:
+    x: step
+- result/nnFormer/plots/metrics:
+    x: step
+- result/nnFormer/plots/metrics:
+    x: step
+- result/nnFormer/plots/metrics:
+    x: step
+- result/nnFormer/plots/metrics:
+    x: step
+- result/nnFormer/plots/metrics:
+    x: step
+- result/nnFormer/plots/metrics:
+    x: step
+- result/nnFormer/plots/metrics:
+    x: step
+- result/nnFormer/plots/metrics:
+    x: step
+- result/nnFormer/plots/metrics:
+    x: step
+- result/nnFormer/plots/metrics:
+    x: step
+- result/nnFormer/plots/metrics:
+    x: step
+- result/nnFormer/plots/metrics:
+    x: step
+- result/nnFormer/plots/metrics:
+    x: step
+- result/nnFormer/plots/metrics:
+    x: step
+- result/nnFormer/plots/metrics:
+    x: step
+- result/nnFormer/plots/metrics:
+    x: step
+- result/nnFormer/plots/metrics:
+    x: step
+- result/nnFormer/plots/metrics:
+    x: step
+- result/nnFormer/plots/metrics:
+    x: step
+- result/nnFormer/plots/metrics:
+    x: step
+- result/nnFormer/plots/metrics:
+    x: step
+- result/nnFormer/plots/metrics:
+    x: step
+- result/nnFormer/plots/metrics:
+    x: step
+- result/nnFormer/plots/metrics:
+    x: step
+- result/nnFormer/plots/metrics:
+    x: step
+- result/nnFormer/plots/metrics:
+    x: step
+- result/nnFormer/plots/metrics:
+    x: step
+- result/nnFormer/plots/metrics:
+    x: step
+- result/nnFormer/plots/metrics:
+    x: step
+- result/nnFormer/plots/metrics:
+    x: step
+- result/nnFormer/plots/metrics:
+    x: step
+- result/nnFormer/plots/metrics:
+    x: step
+- result/nnFormer/plots/metrics:
+    x: step
+- result/nnFormer/plots/metrics:
+    x: step
+- result/nnFormer/plots/metrics:
+    x: step
+- result/nnFormer/plots/metrics:
+    x: step
+- result/nnFormer/plots/metrics:
+    x: step
+- result/nnFormer/plots/metrics:
+    x: step
+- result/nnFormer/plots/metrics:
+    x: step
+- result/nnFormer/plots/metrics:
+    x: step
+- result/nnFormer/plots/metrics:
+    x: step
+- result/AttentionUnet/plots/metrics:
+    x: step
+- result/AttentionUnet/plots/metrics:
+    x: step
+- result/AttentionUnet/plots/metrics:
+    x: step
+- result/AttentionUnet/plots/metrics:
+    x: step
+- result/AttentionUnet/plots/metrics:
+    x: step
+- result/AttentionUnet/plots/metrics:
+    x: step
+- result/AttentionUnet/plots/metrics:
+    x: step
+- result/AttentionUnet/plots/metrics:
+    x: step
+- result/AttentionUnet/plots/metrics:
+    x: step
+- result/AttentionUnet/plots/metrics:
+    x: step
+- result/proposed_AttentionUnet_dstMap/plots/metrics:
+    x: step
+- result/proposed_AttentionUnet_dstMap/plots/metrics:
+    x: step
+- result/proposed_AttentionUnet_dstMap/plots/metrics:
+    x: step
+- result/proposed_AttentionUnet_dstMap/plots/metrics:
+    x: step
+- result/proposed_AttentionUnet_dstMap/plots/metrics:
+    x: step
+- result/proposed_AttentionUnet_dstMap/plots/metrics:
+    x: step
+- result/proposed_AttentionUnet_dstMap/plots/metrics:
+    x: step
+- result/proposed_AttentionUnet_dstMap/plots/metrics:
+    x: step
+- result/proposed_AttentionUnet_dstMap/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/VNet/plots/metrics:
+    x: step
+- result/proposed_VNet_dstMap/plots/metrics:
+    x: step
+- result/proposed_VNet_dstMap/plots/metrics:
+    x: step
+- result/proposed_VNet_dstMap/plots/metrics:
+    x: step
+- result/proposed_VNet_dstMap/plots/metrics:
+    x: step
+- result/proposed_VNet_dstMap/plots/metrics:
+    x: step
+- result/proposed_VNet_dstMap/plots/metrics:
+    x: step
+- result/proposed_VNet_dstMap/plots/metrics:
+    x: step
+- result/proposed_VNet_dstMap/plots/metrics:
+    x: step
+- result/proposed_VNet_dstMap/plots/metrics:
+    x: step
+- result/proposed_VNet_dstMap/plots/metrics:
+    x: step
+- result/proposed_VNet_dstMap/plots/metrics:
+    x: step
+- result/proposed_VNet_dstMap/plots/metrics:
+    x: step
+- result/proposed_VNet_dstMap/plots/metrics:
+    x: step
+- result/proposed_VNet_dstMap/plots/metrics:
+    x: step
+- result/proposed_VNet_dstMap/plots/metrics:
+    x: step
+- result/proposed_VNet_dstMap/plots/metrics:
+    x: step
+- result/proposed_VNet_dstMap/plots/metrics:
+    x: step
+- result/proposed_VNet_dstMap/plots/metrics:
+    x: step
+- result/proposed_VNet_dstMap/plots/metrics:
+    x: step
+- result/proposed_VNet_dstMap/plots/metrics:
+    x: step
+- result/proposed_VNet_dstMap/plots/metrics:
+    x: step
+- result/proposed_VNet_dstMap/plots/metrics:
+    x: step
 artifacts:
   best:
-    path: result/proposed_opt_SegResNet_dstMap/artifacts/epoch=199-step=7000.ckpt
+    path: result/VNet/artifacts/epoch=199-step=4000.ckpt
     type: model

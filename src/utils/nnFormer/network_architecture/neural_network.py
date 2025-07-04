@@ -12,11 +12,11 @@
 #    See the License for the specific language governing permissions and
 #    limitations under the License.
 
-import autorootcwd
+
 import numpy as np
 from batchgenerators.augmentations.utils import pad_nd_image
-from src.utils.nnFormer.utilities.random_stuff import no_op
-from src.utils.nnFormer.utilities.to_torch import to_cuda, maybe_to_torch
+from src.utils.nnformer.utilities.random_stuff import no_op
+from src.utils.nnformer.utilities.to_torch import to_cuda, maybe_to_torch
 from torch import nn
 import torch
 from scipy.ndimage.filters import gaussian_filter
