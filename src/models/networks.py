@@ -73,7 +73,7 @@ class NetworkFactory:
         
         elif arch_name == "nnFormer":
             return nnFormer(
-                crop_size=[96, 96, 96],
+                crop_size=list(patch_size),
                 embedding_dim=96,
                 input_channels=1,
                 num_classes=2,

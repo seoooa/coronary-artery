@@ -2,6 +2,7 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 
+"""
 class SPADE(nn.Module):
     def __init__(self, norm_nc, label_nc):
         super(SPADE, self).__init__()
@@ -48,8 +49,8 @@ class SPADE(nn.Module):
 
         out = normalized * (1 + gamma) + beta
         return out    
-
 """
+
 class SPADE(nn.Module):
     def __init__(self, norm_nc, label_nc):
         super(SPADE, self).__init__()
@@ -73,4 +74,3 @@ class SPADE(nn.Module):
 
         out = normalized * (1 + gamma) + beta
         return out
-"""

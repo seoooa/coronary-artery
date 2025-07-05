@@ -55,15 +55,15 @@ class NetworkFactory:
         
         elif arch_name == "nnFormer":
             return nnFormer(
-                crop_size=patch_size,
-                embedding_dim=192,
+                crop_size=list(patch_size),
+                embedding_dim=96,
                 input_channels=1,
                 num_classes=2,
                 depths=[2, 2, 2, 2],
                 num_heads=[6, 12, 24, 48],
                 patch_size=[2, 4, 4],
-                window_size=[4, 4, 8, 4],
-                deep_supervision=False,
+                window_size=[6, 6, 6, 6],
+                deep_supervision=True,
                 label_nc=label_nc,
             )
         
