@@ -3096,5 +3096,5 @@ plots:
     x: step
 artifacts:
   best:
-    path: result/proposed_VNet_dstMap/artifacts/epoch=179-step=5040.ckpt
+    path: result/proposed_VNet_dstMap/artifacts/epoch=199-step=5600.ckpt
     type: model
