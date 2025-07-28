@@ -66,7 +66,7 @@ class CoronaryArterySegmentModel(pytorch_lightning.LightningModule):
             [
                 EnsureType("tensor", device="cpu"), 
                 AsDiscrete(argmax=True, to_onehot=2),
-                KeepLargestConnectedComponent(applied_labels=[1])
+                KeepLargestConnectedComponent(applied_labels=[1], num_components=2)
             ]
         )
         
@@ -211,7 +211,7 @@ class CoronaryArterySegmentModel(pytorch_lightning.LightningModule):
         labels = [self.post_label(i) for i in decollate_batch(labels)]
         
         filename = batch["image"].meta["filename_or_obj"][0]
-        patient_id = filename.split("/")[-2]  # Gets patient id (ex. 25) from the path
+        patient_id = filename.split("\\")[-2]  # Gets patient id (ex. 25) from the path
         
         # Save result (using original prediction without post-processing)
         self.save_result(
@@ -425,7 +425,6 @@ def main(
         patch_size=(96, 96, 96),
         num_workers=4,
         cache_rate=0.1,
-        fold_number=fold_number
     )
     data_module.prepare_data()
 
@@ -442,7 +441,6 @@ def main(
                 arch_name=arch_name,
                 loss_fn=loss_fn,
                 batch_size=1,
-                fold_number=fold_number
             )
             model.result_folder = Path(log_dir)  # Set result folder path
             
@@ -456,7 +454,6 @@ def main(
                 arch_name=arch_name,
                 loss_fn=loss_fn,
                 batch_size=1,
-                fold_number=fold_number
             )
             model.result_folder = Path(log_dir)  # Set result folder path
             
@@ -473,7 +470,6 @@ def main(
                 arch_name=arch_name,
                 loss_fn=loss_fn,
                 batch_size=1,
-                fold_number=fold_number
             )
             model.result_folder = Path(log_dir)  # Set result folder path
             
@@ -484,7 +480,6 @@ def main(
             arch_name=arch_name,
             loss_fn=loss_fn,
             batch_size=1,
-            fold_number=fold_number
         )
         model.result_folder = Path(log_dir)  # Set result folder path
 

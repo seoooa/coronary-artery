@@ -61,7 +61,7 @@ class CoronaryArterySegmentModel(pytorch_lightning.LightningModule):
             [
                 EnsureType("tensor", device="cpu"), 
                 AsDiscrete(argmax=True, to_onehot=2),
-                KeepLargestConnectedComponent(applied_labels=[1])
+                KeepLargestConnectedComponent(applied_labels=[1], num_components=2)
             ]
         )
         self.post_label = Compose(
@@ -243,7 +243,7 @@ class CoronaryArterySegmentModel(pytorch_lightning.LightningModule):
         labels = [self.post_label(i) for i in decollate_batch(labels)]
 
         filename = batch["image"].meta["filename_or_obj"][0]
-        patient_id = filename.split("/")[-2]  # Gets patient id (ex. 25) from the path
+        patient_id = filename.split("\\")[-2]  # Gets patient id (ex. 25) from the path
 
         # Save result (using post-processed prediction)
         self.save_result(
@@ -425,7 +425,8 @@ def main(
     if "," in str(gpu_number):
         # Multiple GPUs
         devices = [int(gpu) for gpu in str(gpu_number).split(",")]
-        strategy = "ddp_find_unused_parameters_true"
+        # strategy = "ddp_find_unused_parameters_true"
+        strategy = "ddp"
     else:
         # Single GPU
         devices = [int(gpu_number)]

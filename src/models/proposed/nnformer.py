@@ -1,11 +1,11 @@
 from einops import rearrange
 from copy import deepcopy
-from src.utils.nnformer.utilities.nd_softmax import softmax_helper
+from src.utils.nnFormer.utilities.nd_softmax import softmax_helper
 from torch import nn
 import torch
 import numpy as np
-from src.utils.nnformer.network_architecture.initialization import InitWeights_He
-from src.utils.nnformer.network_architecture.neural_network import SegmentationNetwork
+from src.utils.nnFormer.network_architecture.initialization import InitWeights_He
+from src.utils.nnFormer.network_architecture.neural_network import SegmentationNetwork
 import torch.nn.functional
 
 
