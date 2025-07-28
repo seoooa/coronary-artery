@@ -1049,185 +1049,160 @@ metrics:
 - result/VNet/metrics.json
 - result/VNet/metrics.json
 - result/VNet/metrics.json
+- result/nnFormer/metrics.json
+- result/nnFormer/metrics.json
+- result/nnFormer/metrics.json
+- result/nnFormer/metrics.json
+- result/nnFormer/metrics.json
+- result/nnFormer/metrics.json
+- result/nnFormer/metrics.json
+- result/nnFormer/metrics.json
+- result/nnFormer/metrics.json
+- result/nnFormer/metrics.json
+- result/nnFormer/metrics.json
+- result/nnFormer/metrics.json
+- result/nnFormer/metrics.json
+- result/nnFormer/metrics.json
+- result/nnFormer/metrics.json
+- result/nnFormer/metrics.json
+- result/nnFormer/metrics.json
+- result/nnFormer/metrics.json
+- result/nnFormer/metrics.json
+- result/nnFormer/metrics.json
+- result/nnFormer/metrics.json
+- result/nnFormer/metrics.json
+- result/nnFormer/metrics.json
+- result/nnFormer/metrics.json
+- result/nnFormer/metrics.json
+- result/nnFormer/metrics.json
+- result/nnFormer/metrics.json
+- result/nnFormer/metrics.json
+- result/nnFormer/metrics.json
+- result/nnFormer/metrics.json
+- result/nnFormer/metrics.json
+- result/nnFormer/metrics.json
+- result/nnFormer/metrics.json
+- result/nnFormer/metrics.json
+- result/nnFormer/metrics.json
+- result/nnFormer/metrics.json
+- result/nnFormer/metrics.json
+- result/nnFormer/metrics.json
+- result/nnFormer/metrics.json
+- result/nnFormer/metrics.json
+- result/nnFormer/metrics.json
+- result/nnFormer/metrics.json
+- result/nnFormer/metrics.json
+- result/nnFormer/metrics.json
+- result/nnFormer/metrics.json
+- result/nnFormer/metrics.json
+- result/nnFormer/metrics.json
+- result/nnFormer/metrics.json
+- result/nnFormer/metrics.json
+- result/nnFormer/metrics.json
+- result/proposed_nnFormer_dstMap/metrics.json
+- result/proposed_nnFormer_dstMap/metrics.json
+- result/proposed_nnFormer_dstMap/metrics.json
+- result/proposed_nnFormer_dstMap/metrics.json
+- result/proposed_nnFormer_dstMap/metrics.json
+- result/proposed_nnFormer_dstMap/metrics.json
+- result/proposed_nnFormer_dstMap/metrics.json
+- result/proposed_nnFormer_dstMap/metrics.json
+- result/proposed_nnFormer_dstMap/metrics.json
+- result/proposed_nnFormer_dstMap/metrics.json
+- result/proposed_nnFormer_dstMap/metrics.json
+- result/proposed_nnFormer_dstMap/metrics.json
+- result/proposed_nnFormer_dstMap/metrics.json
+- result/proposed_nnFormer_dstMap/metrics.json
+- result/proposed_nnFormer_dstMap/metrics.json
+- result/proposed_nnFormer_dstMap/metrics.json
+- result/proposed_nnFormer_dstMap/metrics.json
+- result/proposed_nnFormer_dstMap/metrics.json
+- result/proposed_nnFormer_dstMap/metrics.json
+- result/proposed_nnFormer_dstMap/metrics.json
+- result/proposed_nnFormer_dstMap/metrics.json
+- result/proposed_nnFormer_dstMap/metrics.json
+- result/proposed_nnFormer_dstMap/metrics.json
+- result/proposed_nnFormer_dstMap/metrics.json
+- result/proposed_nnFormer_dstMap/metrics.json
+- result/proposed_nnFormer_dstMap/metrics.json
+- result/proposed_nnFormer_dstMap/metrics.json
+- result/proposed_nnFormer_dstMap/metrics.json
+- result/proposed_nnFormer_dstMap/metrics.json
+- result/proposed_nnFormer_dstMap/metrics.json
+- result/proposed_nnFormer_dstMap/metrics.json
+- result/proposed_nnFormer_dstMap/metrics.json
+- result/proposed_nnFormer_dstMap/metrics.json
+- result/proposed_nnFormer_dstMap/metrics.json
+- result/proposed_nnFormer_dstMap/metrics.json
+- result/proposed_nnFormer_dstMap/metrics.json
+- result/proposed_nnFormer_dstMap/metrics.json
+- result/proposed_nnFormer_dstMap/metrics.json
+- result/proposed_nnFormer_dstMap/metrics.json
+- result/proposed_nnFormer_dstMap/metrics.json
+- result/proposed_nnFormer_dstMap/metrics.json
+- result/proposed_nnFormer_dstMap/metrics.json
+- result/proposed_nnFormer_dstMap/metrics.json
+- result/proposed_nnFormer_dstMap/metrics.json
+- result/proposed_nnFormer_dstMap/metrics.json
+- result/proposed_nnFormer_dstMap/metrics.json
+- result/proposed_nnFormer_dstMap/metrics.json
+- result/proposed_nnFormer_dstMap/metrics.json
+- result/proposed_nnFormer_dstMap/metrics.json
+- result/proposed_nnFormer_dstMap/metrics.json
+- result/proposed_nnFormer_dstMap/metrics.json
+- result/proposed_nnFormer_dstMap/metrics.json
+- result/proposed_nnFormer_dstMap/metrics.json
+- result/proposed_nnFormer_dstMap/metrics.json
+- result/proposed_nnFormer_dstMap/metrics.json
+- result/proposed_nnFormer_dstMap/metrics.json
+- result/proposed_nnFormer_dstMap/metrics.json
+- result/proposed_nnFormer_dstMap/metrics.json
+- result/proposed_nnFormer_dstMap/metrics.json
+- result/proposed_nnFormer_dstMap/metrics.json
+- result/proposed_nnFormer_dstMap/metrics.json
+- result/proposed_nnFormer_dstMap/metrics.json
+- result/proposed_nnFormer_dstMap/metrics.json
+- result/proposed_nnFormer_dstMap/metrics.json
+- result/proposed_nnFormer_dstMap/metrics.json
+- result/proposed_nnFormer_dstMap/metrics.json
+- result/proposed_nnFormer_dstMap/metrics.json
+- result/proposed_nnFormer_dstMap/metrics.json
+- result/proposed_nnFormer_dstMap/metrics.json
+- result/proposed_nnFormer_dstMap/metrics.json
+- result/proposed_nnFormer_dstMap/metrics.json
+- result/proposed_nnFormer_dstMap/metrics.json
+- result/proposed_nnFormer_dstMap/metrics.json
+- result/proposed_nnFormer_dstMap/metrics.json
+- result/proposed_nnFormer_dstMap/metrics.json
+- result/proposed_nnFormer_dstMap/metrics.json
+- result/proposed_nnFormer_dstMap/metrics.json
+- result/proposed_nnFormer_dstMap/metrics.json
+- result/proposed_nnFormer_dstMap/metrics.json
+- result/proposed_nnFormer_dstMap/metrics.json
+- result/proposed_nnFormer_dstMap/metrics.json
+- result/proposed_nnFormer_dstMap/metrics.json
+- result/proposed_nnFormer_dstMap/metrics.json
+- result/proposed_nnFormer_dstMap/metrics.json
+- result/proposed_nnFormer_dstMap/metrics.json
+- result/proposed_nnFormer_dstMap/metrics.json
+- result/proposed_nnFormer_dstMap/metrics.json
+- result/proposed_nnFormer_dstMap/metrics.json
+- result/proposed_nnFormer_dstMap/metrics.json
+- result/proposed_nnFormer_dstMap/metrics.json
+- result/proposed_nnFormer_dstMap/metrics.json
+- result/proposed_nnFormer_dstMap/metrics.json
+- result/proposed_nnFormer_dstMap/metrics.json
+- result/proposed_nnFormer_dstMap/metrics.json
+- result/proposed_nnFormer_dstMap/metrics.json
+- result/proposed_nnFormer_dstMap/metrics.json
+- result/proposed_nnFormer_dstMap/metrics.json
+- result/proposed_nnFormer_dstMap/metrics.json
+- result/proposed_nnFormer_dstMap/metrics.json
+- result/proposed_nnFormer_dstMap/metrics.json
+- result/proposed_nnFormer_dstMap/metrics.json
+- result/proposed_nnFormer_dstMap/metrics.json
+- result/DSCNet/metrics.json
 - result/proposed_VNet_dstMap/metrics.json
-- result/proposed_VNet_dstMap/metrics.json
-- result/proposed_VNet_dstMap/metrics.json
-- result/proposed_VNet_dstMap/metrics.json
-- result/proposed_VNet_dstMap/metrics.json
-- result/proposed_VNet_dstMap/metrics.json
-- result/proposed_VNet_dstMap/metrics.json
-- result/proposed_VNet_dstMap/metrics.json
-- result/proposed_VNet_dstMap/metrics.json
-- result/proposed_VNet_dstMap/metrics.json
-- result/proposed_VNet_dstMap/metrics.json
-- result/proposed_VNet_dstMap/metrics.json
-- result/proposed_VNet_dstMap/metrics.json
-- result/proposed_VNet_dstMap/metrics.json
-- result/proposed_VNet_dstMap/metrics.json
-- result/proposed_VNet_dstMap/metrics.json
-- result/proposed_VNet_dstMap/metrics.json
-- result/proposed_VNet_dstMap/metrics.json
-- result/proposed_VNet_dstMap/metrics.json
-- result/proposed_VNet_dstMap/metrics.json
-- result/proposed_VNet_dstMap/metrics.json
-- result/proposed_VNet_dstMap/metrics.json
-- result/proposed_VNet_dstMap/metrics.json
-- result/proposed_VNet_dstMap/metrics.json
-- result/proposed_VNet_dstMap/metrics.json
-- result/proposed_VNet_dstMap/metrics.json
-- result/proposed_VNet_dstMap/metrics.json
-- result/nnFormer/metrics.json
-- result/nnFormer/metrics.json
-- result/nnFormer/metrics.json
-- result/nnFormer/metrics.json
-- result/nnFormer/metrics.json
-- result/nnFormer/metrics.json
-- result/nnFormer/metrics.json
-- result/nnFormer/metrics.json
-- result/nnFormer/metrics.json
-- result/nnFormer/metrics.json
-- result/nnFormer/metrics.json
-- result/nnFormer/metrics.json
-- result/nnFormer/metrics.json
-- result/nnFormer/metrics.json
-- result/nnFormer/metrics.json
-- result/nnFormer/metrics.json
-- result/nnFormer/metrics.json
-- result/nnFormer/metrics.json
-- result/nnFormer/metrics.json
-- result/nnFormer/metrics.json
-- result/nnFormer/metrics.json
-- result/nnFormer/metrics.json
-- result/nnFormer/metrics.json
-- result/nnFormer/metrics.json
-- result/nnFormer/metrics.json
-- result/nnFormer/metrics.json
-- result/nnFormer/metrics.json
-- result/nnFormer/metrics.json
-- result/nnFormer/metrics.json
-- result/nnFormer/metrics.json
-- result/nnFormer/metrics.json
-- result/nnFormer/metrics.json
-- result/nnFormer/metrics.json
-- result/nnFormer/metrics.json
-- result/nnFormer/metrics.json
-- result/nnFormer/metrics.json
-- result/nnFormer/metrics.json
-- result/nnFormer/metrics.json
-- result/nnFormer/metrics.json
-- result/nnFormer/metrics.json
-- result/nnFormer/metrics.json
-- result/nnFormer/metrics.json
-- result/nnFormer/metrics.json
-- result/nnFormer/metrics.json
-- result/nnFormer/metrics.json
-- result/nnFormer/metrics.json
-- result/nnFormer/metrics.json
-- result/nnFormer/metrics.json
-- result/nnFormer/metrics.json
-- result/nnFormer/metrics.json
-- result/proposed_nnFormer_dstMap/metrics.json
-- result/proposed_nnFormer_dstMap/metrics.json
-- result/proposed_nnFormer_dstMap/metrics.json
-- result/proposed_nnFormer_dstMap/metrics.json
-- result/proposed_nnFormer_dstMap/metrics.json
-- result/proposed_nnFormer_dstMap/metrics.json
-- result/proposed_nnFormer_dstMap/metrics.json
-- result/proposed_nnFormer_dstMap/metrics.json
-- result/proposed_nnFormer_dstMap/metrics.json
-- result/proposed_nnFormer_dstMap/metrics.json
-- result/proposed_nnFormer_dstMap/metrics.json
-- result/proposed_nnFormer_dstMap/metrics.json
-- result/proposed_nnFormer_dstMap/metrics.json
-- result/proposed_nnFormer_dstMap/metrics.json
-- result/proposed_nnFormer_dstMap/metrics.json
-- result/proposed_nnFormer_dstMap/metrics.json
-- result/proposed_nnFormer_dstMap/metrics.json
-- result/proposed_nnFormer_dstMap/metrics.json
-- result/proposed_nnFormer_dstMap/metrics.json
-- result/proposed_nnFormer_dstMap/metrics.json
-- result/proposed_nnFormer_dstMap/metrics.json
-- result/proposed_nnFormer_dstMap/metrics.json
-- result/proposed_nnFormer_dstMap/metrics.json
-- result/proposed_nnFormer_dstMap/metrics.json
-- result/proposed_nnFormer_dstMap/metrics.json
-- result/proposed_nnFormer_dstMap/metrics.json
-- result/proposed_nnFormer_dstMap/metrics.json
-- result/proposed_nnFormer_dstMap/metrics.json
-- result/proposed_nnFormer_dstMap/metrics.json
-- result/proposed_nnFormer_dstMap/metrics.json
-- result/proposed_nnFormer_dstMap/metrics.json
-- result/proposed_nnFormer_dstMap/metrics.json
-- result/proposed_nnFormer_dstMap/metrics.json
-- result/proposed_nnFormer_dstMap/metrics.json
-- result/proposed_nnFormer_dstMap/metrics.json
-- result/proposed_nnFormer_dstMap/metrics.json
-- result/proposed_nnFormer_dstMap/metrics.json
-- result/proposed_nnFormer_dstMap/metrics.json
-- result/proposed_nnFormer_dstMap/metrics.json
-- result/proposed_nnFormer_dstMap/metrics.json
-- result/proposed_nnFormer_dstMap/metrics.json
-- result/proposed_nnFormer_dstMap/metrics.json
-- result/proposed_nnFormer_dstMap/metrics.json
-- result/proposed_nnFormer_dstMap/metrics.json
-- result/proposed_nnFormer_dstMap/metrics.json
-- result/proposed_nnFormer_dstMap/metrics.json
-- result/proposed_nnFormer_dstMap/metrics.json
-- result/proposed_nnFormer_dstMap/metrics.json
-- result/proposed_nnFormer_dstMap/metrics.json
-- result/proposed_nnFormer_dstMap/metrics.json
-- result/proposed_nnFormer_dstMap/metrics.json
-- result/proposed_nnFormer_dstMap/metrics.json
-- result/proposed_nnFormer_dstMap/metrics.json
-- result/proposed_nnFormer_dstMap/metrics.json
-- result/proposed_nnFormer_dstMap/metrics.json
-- result/proposed_nnFormer_dstMap/metrics.json
-- result/proposed_nnFormer_dstMap/metrics.json
-- result/proposed_nnFormer_dstMap/metrics.json
-- result/proposed_nnFormer_dstMap/metrics.json
-- result/proposed_nnFormer_dstMap/metrics.json
-- result/proposed_nnFormer_dstMap/metrics.json
-- result/proposed_nnFormer_dstMap/metrics.json
-- result/proposed_nnFormer_dstMap/metrics.json
-- result/proposed_nnFormer_dstMap/metrics.json
-- result/proposed_nnFormer_dstMap/metrics.json
-- result/proposed_nnFormer_dstMap/metrics.json
-- result/proposed_nnFormer_dstMap/metrics.json
-- result/proposed_nnFormer_dstMap/metrics.json
-- result/proposed_nnFormer_dstMap/metrics.json
-- result/proposed_nnFormer_dstMap/metrics.json
-- result/proposed_nnFormer_dstMap/metrics.json
-- result/proposed_nnFormer_dstMap/metrics.json
-- result/proposed_nnFormer_dstMap/metrics.json
-- result/proposed_nnFormer_dstMap/metrics.json
-- result/proposed_nnFormer_dstMap/metrics.json
-- result/proposed_nnFormer_dstMap/metrics.json
-- result/proposed_nnFormer_dstMap/metrics.json
-- result/proposed_nnFormer_dstMap/metrics.json
-- result/proposed_nnFormer_dstMap/metrics.json
-- result/proposed_nnFormer_dstMap/metrics.json
-- result/proposed_nnFormer_dstMap/metrics.json
-- result/proposed_nnFormer_dstMap/metrics.json
-- result/proposed_nnFormer_dstMap/metrics.json
-- result/proposed_nnFormer_dstMap/metrics.json
-- result/proposed_nnFormer_dstMap/metrics.json
-- result/proposed_nnFormer_dstMap/metrics.json
-- result/proposed_nnFormer_dstMap/metrics.json
-- result/proposed_nnFormer_dstMap/metrics.json
-- result/proposed_nnFormer_dstMap/metrics.json
-- result/proposed_nnFormer_dstMap/metrics.json
-- result/proposed_nnFormer_dstMap/metrics.json
-- result/proposed_nnFormer_dstMap/metrics.json
-- result/proposed_nnFormer_dstMap/metrics.json
-- result/proposed_nnFormer_dstMap/metrics.json
-- result/proposed_nnFormer_dstMap/metrics.json
-- result/proposed_nnFormer_dstMap/metrics.json
-- result/proposed_nnFormer_dstMap/metrics.json
-- result/proposed_nnFormer_dstMap/metrics.json
-- result/proposed_nnFormer_dstMap/metrics.json
-- result/proposed_nnFormer_dstMap/metrics.json
-- result/proposed_nnFormer_dstMap/metrics.json
-- result/proposed_nnFormer_dstMap/metrics.json
 plots:
 - result/coronary_UNet/plots/metrics:
     x: step
@@ -2812,486 +2787,6 @@ plots:
 - result/VNet/plots/metrics:
     x: step
 - result/VNet/plots/metrics:
-    x: step
-- result/VNet/plots/metrics:
-    x: step
-- result/VNet/plots/metrics:
-    x: step
-- result/VNet/plots/metrics:
-    x: step
-- result/VNet/plots/metrics:
-    x: step
-- result/VNet/plots/metrics:
-    x: step
-- result/VNet/plots/metrics:
-    x: step
-- result/VNet/plots/metrics:
-    x: step
-- result/VNet/plots/metrics:
-    x: step
-- result/VNet/plots/metrics:
-    x: step
-- result/VNet/plots/metrics:
-    x: step
-- result/VNet/plots/metrics:
-    x: step
-- result/VNet/plots/metrics:
-    x: step
-- result/VNet/plots/metrics:
-    x: step
-- result/VNet/plots/metrics:
-    x: step
-- result/VNet/plots/metrics:
-    x: step
-- result/VNet/plots/metrics:
-    x: step
-- result/VNet/plots/metrics:
-    x: step
-- result/VNet/plots/metrics:
-    x: step
-- result/VNet/plots/metrics:
-    x: step
-- result/VNet/plots/metrics:
-    x: step
-- result/VNet/plots/metrics:
-    x: step
-- result/VNet/plots/metrics:
-    x: step
-- result/VNet/plots/metrics:
-    x: step
-- result/VNet/plots/metrics:
-    x: step
-- result/VNet/plots/metrics:
-    x: step
-- result/VNet/plots/metrics:
-    x: step
-- result/VNet/plots/metrics:
-    x: step
-- result/VNet/plots/metrics:
-    x: step
-- result/VNet/plots/metrics:
-    x: step
-- result/VNet/plots/metrics:
-    x: step
-- result/VNet/plots/metrics:
-    x: step
-- result/VNet/plots/metrics:
-    x: step
-- result/VNet/plots/metrics:
-    x: step
-- result/VNet/plots/metrics:
-    x: step
-- result/VNet/plots/metrics:
-    x: step
-- result/VNet/plots/metrics:
-    x: step
-- result/VNet/plots/metrics:
-    x: step
-- result/VNet/plots/metrics:
-    x: step
-- result/VNet/plots/metrics:
-    x: step
-- result/VNet/plots/metrics:
-    x: step
-- result/VNet/plots/metrics:
-    x: step
-- result/VNet/plots/metrics:
-    x: step
-- result/VNet/plots/metrics:
-    x: step
-- result/VNet/plots/metrics:
-    x: step
-- result/VNet/plots/metrics:
-    x: step
-- result/VNet/plots/metrics:
-    x: step
-- result/VNet/plots/metrics:
-    x: step
-- result/VNet/plots/metrics:
-    x: step
-- result/VNet/plots/metrics:
-    x: step
-- result/VNet/plots/metrics:
-    x: step
-- result/VNet/plots/metrics:
-    x: step
-- result/VNet/plots/metrics:
-    x: step
-- result/VNet/plots/metrics:
-    x: step
-- result/VNet/plots/metrics:
-    x: step
-- result/VNet/plots/metrics:
-    x: step
-- result/VNet/plots/metrics:
-    x: step
-- result/VNet/plots/metrics:
-    x: step
-- result/VNet/plots/metrics:
-    x: step
-- result/VNet/plots/metrics:
-    x: step
-- result/VNet/plots/metrics:
-    x: step
-- result/VNet/plots/metrics:
-    x: step
-- result/VNet/plots/metrics:
-    x: step
-- result/VNet/plots/metrics:
-    x: step
-- result/VNet/plots/metrics:
-    x: step
-- result/VNet/plots/metrics:
-    x: step
-- result/VNet/plots/metrics:
-    x: step
-- result/VNet/plots/metrics:
-    x: step
-- result/VNet/plots/metrics:
-    x: step
-- result/VNet/plots/metrics:
-    x: step
-- result/VNet/plots/metrics:
-    x: step
-- result/VNet/plots/metrics:
-    x: step
-- result/VNet/plots/metrics:
-    x: step
-- result/VNet/plots/metrics:
-    x: step
-- result/VNet/plots/metrics:
-    x: step
-- result/VNet/plots/metrics:
-    x: step
-- result/VNet/plots/metrics:
-    x: step
-- result/VNet/plots/metrics:
-    x: step
-- result/VNet/plots/metrics:
-    x: step
-- result/VNet/plots/metrics:
-    x: step
-- result/VNet/plots/metrics:
-    x: step
-- result/VNet/plots/metrics:
-    x: step
-- result/VNet/plots/metrics:
-    x: step
-- result/VNet/plots/metrics:
-    x: step
-- result/VNet/plots/metrics:
-    x: step
-- result/VNet/plots/metrics:
-    x: step
-- result/VNet/plots/metrics:
-    x: step
-- result/VNet/plots/metrics:
-    x: step
-- result/VNet/plots/metrics:
-    x: step
-- result/VNet/plots/metrics:
-    x: step
-- result/VNet/plots/metrics:
-    x: step
-- result/VNet/plots/metrics:
-    x: step
-- result/VNet/plots/metrics:
-    x: step
-- result/VNet/plots/metrics:
-    x: step
-- result/VNet/plots/metrics:
-    x: step
-- result/VNet/plots/metrics:
-    x: step
-- result/VNet/plots/metrics:
-    x: step
-- result/VNet/plots/metrics:
-    x: step
-- result/VNet/plots/metrics:
-    x: step
-- result/VNet/plots/metrics:
-    x: step
-- result/VNet/plots/metrics:
-    x: step
-- result/VNet/plots/metrics:
-    x: step
-- result/VNet/plots/metrics:
-    x: step
-- result/VNet/plots/metrics:
-    x: step
-- result/VNet/plots/metrics:
-    x: step
-- result/VNet/plots/metrics:
-    x: step
-- result/VNet/plots/metrics:
-    x: step
-- result/VNet/plots/metrics:
-    x: step
-- result/VNet/plots/metrics:
-    x: step
-- result/VNet/plots/metrics:
-    x: step
-- result/VNet/plots/metrics:
-    x: step
-- result/VNet/plots/metrics:
-    x: step
-- result/VNet/plots/metrics:
-    x: step
-- result/VNet/plots/metrics:
-    x: step
-- result/VNet/plots/metrics:
-    x: step
-- result/VNet/plots/metrics:
-    x: step
-- result/VNet/plots/metrics:
-    x: step
-- result/VNet/plots/metrics:
-    x: step
-- result/VNet/plots/metrics:
-    x: step
-- result/VNet/plots/metrics:
-    x: step
-- result/VNet/plots/metrics:
-    x: step
-- result/VNet/plots/metrics:
-    x: step
-- result/VNet/plots/metrics:
-    x: step
-- result/VNet/plots/metrics:
-    x: step
-- result/VNet/plots/metrics:
-    x: step
-- result/VNet/plots/metrics:
-    x: step
-- result/VNet/plots/metrics:
-    x: step
-- result/VNet/plots/metrics:
-    x: step
-- result/VNet/plots/metrics:
-    x: step
-- result/VNet/plots/metrics:
-    x: step
-- result/VNet/plots/metrics:
-    x: step
-- result/VNet/plots/metrics:
-    x: step
-- result/VNet/plots/metrics:
-    x: step
-- result/VNet/plots/metrics:
-    x: step
-- result/VNet/plots/metrics:
-    x: step
-- result/VNet/plots/metrics:
-    x: step
-- result/VNet/plots/metrics:
-    x: step
-- result/VNet/plots/metrics:
-    x: step
-- result/VNet/plots/metrics:
-    x: step
-- result/VNet/plots/metrics:
-    x: step
-- result/VNet/plots/metrics:
-    x: step
-- result/VNet/plots/metrics:
-    x: step
-- result/VNet/plots/metrics:
-    x: step
-- result/VNet/plots/metrics:
-    x: step
-- result/VNet/plots/metrics:
-    x: step
-- result/VNet/plots/metrics:
-    x: step
-- result/VNet/plots/metrics:
-    x: step
-- result/VNet/plots/metrics:
-    x: step
-- result/VNet/plots/metrics:
-    x: step
-- result/VNet/plots/metrics:
-    x: step
-- result/VNet/plots/metrics:
-    x: step
-- result/VNet/plots/metrics:
-    x: step
-- result/VNet/plots/metrics:
-    x: step
-- result/VNet/plots/metrics:
-    x: step
-- result/VNet/plots/metrics:
-    x: step
-- result/VNet/plots/metrics:
-    x: step
-- result/VNet/plots/metrics:
-    x: step
-- result/VNet/plots/metrics:
-    x: step
-- result/VNet/plots/metrics:
-    x: step
-- result/VNet/plots/metrics:
-    x: step
-- result/VNet/plots/metrics:
-    x: step
-- result/VNet/plots/metrics:
-    x: step
-- result/VNet/plots/metrics:
-    x: step
-- result/VNet/plots/metrics:
-    x: step
-- result/VNet/plots/metrics:
-    x: step
-- result/VNet/plots/metrics:
-    x: step
-- result/VNet/plots/metrics:
-    x: step
-- result/VNet/plots/metrics:
-    x: step
-- result/VNet/plots/metrics:
-    x: step
-- result/VNet/plots/metrics:
-    x: step
-- result/VNet/plots/metrics:
-    x: step
-- result/VNet/plots/metrics:
-    x: step
-- result/VNet/plots/metrics:
-    x: step
-- result/VNet/plots/metrics:
-    x: step
-- result/VNet/plots/metrics:
-    x: step
-- result/VNet/plots/metrics:
-    x: step
-- result/VNet/plots/metrics:
-    x: step
-- result/VNet/plots/metrics:
-    x: step
-- result/VNet/plots/metrics:
-    x: step
-- result/VNet/plots/metrics:
-    x: step
-- result/VNet/plots/metrics:
-    x: step
-- result/VNet/plots/metrics:
-    x: step
-- result/VNet/plots/metrics:
-    x: step
-- result/VNet/plots/metrics:
-    x: step
-- result/VNet/plots/metrics:
-    x: step
-- result/VNet/plots/metrics:
-    x: step
-- result/VNet/plots/metrics:
-    x: step
-- result/VNet/plots/metrics:
-    x: step
-- result/VNet/plots/metrics:
-    x: step
-- result/VNet/plots/metrics:
-    x: step
-- result/VNet/plots/metrics:
-    x: step
-- result/VNet/plots/metrics:
-    x: step
-- result/VNet/plots/metrics:
-    x: step
-- result/VNet/plots/metrics:
-    x: step
-- result/VNet/plots/metrics:
-    x: step
-- result/VNet/plots/metrics:
-    x: step
-- result/VNet/plots/metrics:
-    x: step
-- result/VNet/plots/metrics:
-    x: step
-- result/VNet/plots/metrics:
-    x: step
-- result/VNet/plots/metrics:
-    x: step
-- result/VNet/plots/metrics:
-    x: step
-- result/VNet/plots/metrics:
-    x: step
-- result/VNet/plots/metrics:
-    x: step
-- result/VNet/plots/metrics:
-    x: step
-- result/VNet/plots/metrics:
-    x: step
-- result/VNet/plots/metrics:
-    x: step
-- result/VNet/plots/metrics:
-    x: step
-- result/VNet/plots/metrics:
-    x: step
-- result/VNet/plots/metrics:
-    x: step
-- result/VNet/plots/metrics:
-    x: step
-- result/VNet/plots/metrics:
-    x: step
-- result/VNet/plots/metrics:
-    x: step
-- result/VNet/plots/metrics:
-    x: step
-- result/VNet/plots/metrics:
-    x: step
-- result/VNet/plots/metrics:
-    x: step
-- result/VNet/plots/metrics:
-    x: step
-- result/VNet/plots/metrics:
-    x: step
-- result/VNet/plots/metrics:
-    x: step
-- result/VNet/plots/metrics:
-    x: step
-- result/VNet/plots/metrics:
-    x: step
-- result/VNet/plots/metrics:
-    x: step
-- result/VNet/plots/metrics:
-    x: step
-- result/VNet/plots/metrics:
-    x: step
-- result/VNet/plots/metrics:
-    x: step
-- result/VNet/plots/metrics:
-    x: step
-- result/VNet/plots/metrics:
-    x: step
-- result/VNet/plots/metrics:
-    x: step
-- result/VNet/plots/metrics:
-    x: step
-- result/VNet/plots/metrics:
-    x: step
-- result/VNet/plots/metrics:
-    x: step
-- result/VNet/plots/metrics:
-    x: step
-- result/VNet/plots/metrics:
-    x: step
-- result/VNet/plots/metrics:
-    x: step
-- result/VNet/plots/metrics:
-    x: step
-- result/VNet/plots/metrics:
-    x: step
-- result/VNet/plots/metrics:
-    x: step
-- result/VNet/plots/metrics:
-    x: step
-- result/VNet/plots/metrics:
-    x: step
-- result/VNet/plots/metrics:
-    x: step
-- result/proposed_VNet_dstMap/plots/metrics:
-    x: step
-- result/proposed_VNet_dstMap/plots/metrics:
     x: step
 - result/proposed_VNet_dstMap/plots/metrics:
     x: step

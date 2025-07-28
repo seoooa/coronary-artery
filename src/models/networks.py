@@ -91,18 +91,18 @@ class NetworkFactory:
                 channels=1
             )
         
-        elif arch_name == "DSCNet":
-            device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
-            return DSCNet(
-                n_channels=1,
-                n_classes=2,
-                kernel_size=3,
-                extend_scope=1.0,
-                if_offset=True,
-                device=device,
-                number=4,
-                dim=3
-            )
+        # elif arch_name == "DSCNet":
+        #     device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+        #     return DSCNet(
+        #         n_channels=1,
+        #         n_classes=2,
+        #         kernel_size=3,
+        #         extend_scope=1.0,
+        #         if_offset=True,
+        #         device=device,
+        #         number=4,
+        #         dim=3
+        #     )
         
         else:
             raise ValueError(f"Unsupported architecture name: {arch_name}")

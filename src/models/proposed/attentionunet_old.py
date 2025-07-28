@@ -178,23 +178,30 @@ class AttentionLayer(nn.Module):
         )
         self.submodule = submodule
         
-        # Add SPADE module (used in decoder only)
+        # SPADE 모듈 추가 (decoder에서 사용)
         self.spade = SPADE(in_channels, label_nc)
 
     def forward(self, x: torch.Tensor, segmap: torch.Tensor = None) -> torch.Tensor:
-        # Execute submodule (encoder part) - do not pass segmap
-        lower_out = self.submodule(x)
+        # 하위 모듈 실행 (encoder 부분)
+        if hasattr(self.submodule, 'forward') and len(self.submodule.forward.__code__.co_varnames) > 2:
+            # submodule이 segmap을 받을 수 있는 경우
+            try:
+                lower_out = self.submodule(x, segmap)
+            except TypeError:
+                lower_out = self.submodule(x)
+        else:
+            lower_out = self.submodule(x)
         
-        # Upsampling (decoder starts)
+        # Upsampling
         fromlower = self.upconv(lower_out)
         
-        # Apply attention
+        # Attention 적용
         att = self.attention(g=fromlower, x=x)
         
-        # Skip connection and merge
+        # Skip connection과 merge
         merged = self.merge(torch.cat((att, fromlower), dim=1))
         
-        # Apply SPADE (decoder only)
+        # SPADE 적용 (decoder에서)
         if segmap is not None:
             merged = self.spade(merged, segmap)
         
