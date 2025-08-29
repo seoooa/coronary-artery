@@ -27,7 +27,9 @@ import nibabel as nib
 from pathlib import Path
 import csv
 from dvclive.lightning import DVCLiveLogger
+
 from src.data.dataloader import CoronaryArteryDataModule
+from src.data.dataloader_SkelREC import CoronaryArterySkelRECDataModule
 from src.models.networks import NetworkFactory
 from src.losses.losses import LossFactory
 from src.metrics.metrics import MetricFactory
@@ -50,6 +52,7 @@ class CoronaryArterySegmentModel(pytorch_lightning.LightningModule):
     ):
         super().__init__()
 
+        self.loss_fn = loss_fn
         self._model = NetworkFactory.create_network(arch_name, patch_size)
         self.loss_function = LossFactory.create_loss(loss_fn)
         self.metrics = MetricFactory.create_metrics()
@@ -80,7 +83,14 @@ class CoronaryArterySegmentModel(pytorch_lightning.LightningModule):
     def training_step(self, batch, batch_idx):
         images, labels = batch["image"], batch["label"]
         output = self.forward(images)
-        loss = self.loss_function(output, labels)
+
+        # Use skeleton data for SkeletonRecallLoss
+        if self.loss_fn == "SkeletonRecallLoss":
+            skeleton = batch["skeleton"]
+            loss = self.loss_function(output, labels, skeleton)
+        else:
+            loss = self.loss_function(output, labels)
+            
         metrics = loss.item()
         self.log(
             "train_loss",
@@ -89,6 +99,7 @@ class CoronaryArterySegmentModel(pytorch_lightning.LightningModule):
             on_epoch=True,
             prog_bar=True,
             logger=True,
+            sync_dist=True
         )
         return loss
 
@@ -99,7 +110,14 @@ class CoronaryArterySegmentModel(pytorch_lightning.LightningModule):
         outputs = sliding_window_inference(
             images, roi_size, sw_batch_size, self.forward
         )
-        loss = self.loss_function(outputs, labels)
+
+        # Use skeleton data for SkeletonRecallLoss
+        if self.loss_fn == "SkeletonRecallLoss":
+            skeleton = batch["skeleton"]
+            loss = self.loss_function(outputs, labels, skeleton)
+        else:
+            loss = self.loss_function(outputs, labels)
+
         outputs = [self.post_pred(i) for i in decollate_batch(outputs)]
         labels = [self.post_label(i) for i in decollate_batch(labels)]
         
@@ -256,7 +274,7 @@ class CoronaryArterySegmentModel(pytorch_lightning.LightningModule):
             "test/mean_cldice": mean_cldice,
             "test/mean_betti_0": mean_betti_0,
             "test/mean_betti_1": mean_betti_1,
-        })
+        }, sync_dist=True)
 
         # Save detailed result to CSV
         result_file = self.result_folder / "test" / "test_result.csv"
@@ -315,21 +333,21 @@ class CoronaryArterySegmentModel(pytorch_lightning.LightningModule):
 @click.option(
     "--arch_name",
     type=click.Choice(
-        ["UNet", "AttentionUnet", "SegResNet", "UNETR", "SwinUNETR", "VNet", "DynUNet", "CSNet3D", "nnFormer", "DSCNet"]
+        ["UNet", "AttentionUnet", "SegResNet", "UNETR", "SwinUNETR", "VNet", "DynUNet", "CSNet3D", "nnFormer"]
     ),
-    default="UNETR",
+    default="SegResNet",
     help="Choose the architecture name for the model.",
 )
 @click.option(
     "--loss_fn",
-    type=click.Choice(["DiceLoss", "DiceCELoss", "DiceFocalLoss"]),
+    type=click.Choice(["DiceLoss", "DiceCELoss", "DiceFocalLoss", "SoftDiceclDiceLoss", "SkeletonRecallLoss"]),
     default="DiceFocalLoss",
     help="Choose the loss function for training.",
 )
 @click.option(
     "--max_epochs",
     type=int,
-    default=300,
+    default=200,
     help="Set the maximum number of training epochs.",
 )
 @click.option(
@@ -366,7 +384,7 @@ def main(
     print_monai_config()
 
     # set up loggers and checkpoints
-    log_dir = f"result/{arch_name}"
+    log_dir = f"result/{arch_name}_{loss_fn}"
     os.makedirs(log_dir, exist_ok=True)
 
     # GPU Setting
@@ -404,13 +422,25 @@ def main(
     )
 
     # Initialize data module
-    data_module = CoronaryArteryDataModule(
-        data_dir="data/imageCAS",
-        batch_size=1,
-        patch_size=(96, 96, 96),
-        num_workers=4,
-        cache_rate=0.1
-    )
+    if loss_fn == "SkeletonRecallLoss":
+        data_module = CoronaryArterySkelRECDataModule(
+            data_dir="data/imageCAS",
+            batch_size=1,
+            patch_size=(96, 96, 96),
+            num_workers=4,
+            cache_rate=0.0,
+            use_skeleton=True,
+            skeleton_do_tube=True
+        )
+    else:
+        data_module = CoronaryArteryDataModule(
+            data_dir="data/imageCAS",
+            batch_size=1,
+            patch_size=(96, 96, 96),
+            num_workers=4,
+            cache_rate=0.0
+        )
+        
     data_module.prepare_data()
 
     if checkpoint_path is not None and os.path.exists(checkpoint_path):

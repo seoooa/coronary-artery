@@ -238,16 +238,6 @@ class CoronaryArteryDataModule(pl.LightningDataModule):
             copy_cache=False
         )
 
-        # self.val_ds = Dataset(
-        #     data=val_files,
-        #     transform=self.val_transforms,
-        # )
-
-        # self.test_ds = Dataset(
-        #     data=test_files,
-        #     transform=self.val_transforms,
-        # )
-
     def train_dataloader(self):
         return DataLoader(
             self.train_ds,
