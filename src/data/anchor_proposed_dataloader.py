@@ -20,6 +20,7 @@ import SimpleITK as sitk
 import torch
 import lightning.pytorch as pl
 from pathlib import Path
+import numpy as np
 
 def create_distance_map(binary_mask):
     """
@@ -39,7 +40,6 @@ def create_distance_map(binary_mask):
         # convert to SimpleITK image
         sitk_mask = sitk.GetImageFromArray(channel_mask)
         sitk_mask = sitk.Cast(sitk_mask, sitk.sitkUInt8)
-        sitk_mask.SetSpacing((0.35, 0.35, 0.5))
         
         # create distance map
         distance_map = sitk.SignedMaurerDistanceMap(
@@ -76,15 +76,17 @@ def ConvertDistanceMap(data):
     data["seg"] = distance_map
     return data
 
+
 class CoronaryArteryDataModule(pl.LightningDataModule):
     def __init__(
         self,
-        data_dir: str = "data/imageCAS",
+        data_dir: str = "data/imageCAS_ablation",
         batch_size: int = 4,
         patch_size: tuple = (96, 96, 96),
         num_workers: int = 4, 
         cache_rate: float = 0.05,
-        use_distance_map: bool = False
+        use_distance_map: bool = False,
+        anchor_type: str = "aorta_myocardium"
     ):
         super().__init__()
         self.data_dir = Path(data_dir)
@@ -93,9 +95,27 @@ class CoronaryArteryDataModule(pl.LightningDataModule):
         self.num_workers = num_workers
         self.cache_rate = cache_rate
         self.use_distance_map = use_distance_map
+        self.anchor_type = anchor_type
         self.train_ds = None
         self.val_ds = None
         self.test_ds = None
+        
+        # Determine seg file name and number of channels based on anchor_type
+        if anchor_type == "full":
+            self.seg_filename = "heart_combined.nii.gz"
+            self.num_seg_channels = 8
+        elif anchor_type == "aorta_myocardium":
+            self.seg_filename = "aorta_myocardium_combined.nii.gz"
+            self.num_seg_channels = 4
+        elif anchor_type == "ventricle_atrium":
+            self.seg_filename = "ventricle_atrium_combined.nii.gz"
+            self.num_seg_channels = 6
+        else:
+            raise ValueError(f"Unknown anchor_type: {anchor_type}")
+        
+        print(f"[DataModule] Anchor type: {anchor_type}")
+        print(f"[DataModule] Seg filename: {self.seg_filename}")
+        print(f"[DataModule] Num seg channels: {self.num_seg_channels}")
         
     def load_data_splits(self, split: str):
         split_dir = self.data_dir / split
@@ -107,14 +127,19 @@ class CoronaryArteryDataModule(pl.LightningDataModule):
 
             image_file = str(case_dir / "img.nii.gz")
             label_file = str(case_dir / "label.nii.gz")
-            seg_file = str(case_dir / "heart_combined.nii.gz")  # roi segmentation
+            seg_file = str(case_dir / self.seg_filename)  # roi segmentation based on anchor_type
             
-            if os.path.exists(image_file) and os.path.exists(label_file):
+            # Check if all files exist
+            if os.path.exists(image_file) and os.path.exists(label_file) and os.path.exists(seg_file):
                 data_files.append({
                     "image": image_file,
                     "label": label_file,
                     "seg": seg_file
                 })
+            else:
+                # Print warning if seg file is missing
+                if not os.path.exists(seg_file):
+                    print(f"Warning: Seg file not found: {seg_file}")
         
         return data_files
 
@@ -133,7 +158,7 @@ class CoronaryArteryDataModule(pl.LightningDataModule):
             ),
             AsDiscreted(
                 keys=["seg"],
-                to_onehot=8,
+                to_onehot=self.num_seg_channels,
             ),
             CropForegroundd(keys=["image", "label", "seg"], source_key="image"),
         ]
@@ -186,7 +211,7 @@ class CoronaryArteryDataModule(pl.LightningDataModule):
             ),
             AsDiscreted(
                 keys=["seg"],
-                to_onehot=8,
+                to_onehot=self.num_seg_channels,
             ),
             CropForegroundd(keys=["image", "label", "seg"], source_key="image"),
         ]

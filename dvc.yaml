@@ -1201,6 +1201,24 @@ metrics:
 - result/SegResNet_SkeletonRecallLoss/metrics.json
 - result/proposed_SegResNet_dstMap_SoftDiceclDiceLoss/metrics.json
 - result/SegResNet_SoftDiceclDiceLoss/metrics.json
+- result/proposed_SegResNet_dstMap_SkeletonRecallLoss/metrics.json
+- result/experiments/anchor_ablation/basline/SegResNet_DiceFocalLoss/metrics.json
+- result/experiments/anchor_ablation/aorta_myocardium/proposed_SegResNet_dstMap_DiceFocalLoss/metrics.json
+- result/experiments/anchor_ablation/ventricle_atrium/proposed_SegResNet_dstMap_DiceFocalLoss/metrics.json
+- result/experiments/anchor_ablation/baseline/SegResNet_DiceFocalLoss/metrics.json
+- result/experiments/anchor_ablation/full/proposed_SegResNet_dstMap_DiceFocalLoss/metrics.json
+- result/experiments/statistical_significance/test/AttentionUnet_DiceFocalLoss/metrics.json
+- result/experiments/statistical_significance/test/VNet_DiceFocalLoss/metrics.json
+- result/experiments/statistical_significance/test/CSNet3D_DiceFocalLoss/metrics.json
+- result/experiments/statistical_significance/test/SwinUNETR_DiceFocalLoss/metrics.json
+- result/experiments/statistical_significance/test/UNETR_DiceFocalLoss/metrics.json
+- result/experiments/statistical_significance/test/proposed_UNETR_dstMap_DiceFocalLoss/metrics.json
+- result/experiments/statistical_significance/test/nnFormer_DiceFocalLoss/metrics.json
+- result/experiments/statistical_significance/test/proposed_AttentionUnet_dstMap_DiceFocalLoss/metrics.json
+- result/experiments/statistical_significance/test/proposed_SwinUNETR_dstMap_DiceFocalLoss/metrics.json
+- result/experiments/statistical_significance/test/proposed_nnFormer_dstMap_DiceFocalLoss/metrics.json
+- result/experiments/statistical_significance/test/proposed_CSNet3D_dstMap_DiceFocalLoss/metrics.json
+- result/experiments/no_coronary_conditioning/proposed_SegResNet_dstMap_DiceFocalLoss/metrics.json
 plots:
 - result/coronary_UNet/plots/metrics:
     x: step
@@ -1297,7 +1315,39 @@ plots:
     x: step
 - result/SegResNet_SoftDiceclDiceLoss/plots/metrics:
     x: step
-artifacts:
-  best:
-    path: result/SegResNet_SoftDiceclDiceLoss/artifacts/epoch=199-step=14000.ckpt
-    type: model
+- result/proposed_SegResNet_dstMap_SkeletonRecallLoss/plots/metrics:
+    x: step
+- result/experiments/anchor_ablation/basline/SegResNet_DiceFocalLoss/plots/metrics:
+    x: step
+- result/experiments/anchor_ablation/aorta_myocardium/proposed_SegResNet_dstMap_DiceFocalLoss/plots/metrics:
+    x: step
+- result/experiments/anchor_ablation/ventricle_atrium/proposed_SegResNet_dstMap_DiceFocalLoss/plots/metrics:
+    x: step
+- result/experiments/anchor_ablation/baseline/SegResNet_DiceFocalLoss/plots/metrics:
+    x: step
+- result/experiments/anchor_ablation/full/proposed_SegResNet_dstMap_DiceFocalLoss/plots/metrics:
+    x: step
+- result/experiments/statistical_significance/test/AttentionUnet_DiceFocalLoss/plots/metrics:
+    x: step
+- result/experiments/statistical_significance/test/VNet_DiceFocalLoss/plots/metrics:
+    x: step
+- result/experiments/statistical_significance/test/CSNet3D_DiceFocalLoss/plots/metrics:
+    x: step
+- result/experiments/statistical_significance/test/SwinUNETR_DiceFocalLoss/plots/metrics:
+    x: step
+- result/experiments/statistical_significance/test/UNETR_DiceFocalLoss/plots/metrics:
+    x: step
+- result/experiments/statistical_significance/test/proposed_UNETR_dstMap_DiceFocalLoss/plots/metrics:
+    x: step
+- result/experiments/statistical_significance/test/nnFormer_DiceFocalLoss/plots/metrics:
+    x: step
+- result/experiments/statistical_significance/test/proposed_AttentionUnet_dstMap_DiceFocalLoss/plots/metrics:
+    x: step
+- result/experiments/statistical_significance/test/proposed_SwinUNETR_dstMap_DiceFocalLoss/plots/metrics:
+    x: step
+- result/experiments/statistical_significance/test/proposed_nnFormer_dstMap_DiceFocalLoss/plots/metrics:
+    x: step
+- result/experiments/statistical_significance/test/proposed_CSNet3D_dstMap_DiceFocalLoss/plots/metrics:
+    x: step
+- result/experiments/no_coronary_conditioning/proposed_SegResNet_dstMap_DiceFocalLoss/plots/metrics:
+    x: step
